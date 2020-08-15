@@ -6,15 +6,8 @@ public class SceneController : MonoBehaviour
 	private static SceneController sceneController;
 	void Awake()
 	{
-		if (!sceneController)
-		{
-			DontDestroyOnLoad(this.gameObject);
-			sceneController = this;
-		}
-		else
-		{
-			Destroy(this.gameObject);
-		}
+		if (!sceneController) sceneController = this;
+		else Destroy(this.gameObject);
 	}
 
 	private void Start()
