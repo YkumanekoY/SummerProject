@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	public static GameManager Instance; // 唯一無二の存在
+	public static GameManager Instance; //  GameManagerは唯一無二の存在
 
 	// State管理一覧
 	public enum GameState
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 		Prepare,
 		Playing,
 		TimeUp,
-		EmemyWin,
+		EnemyWin,
 		EnemyLose,
 		Result
 	}
@@ -22,14 +22,19 @@ public class GameManager : MonoBehaviour
 	// 現在のState
 	[SerializeField] private GameState currentGameState;
 
+	// タイマー関係
+	[SerializeField] private float timer;
+	public float GetTimer() { return timer; }
+	private const float timeLimit = 180;
+
 	// プレイヤーの操作が可能か
 	public bool isPlayerControl;
 
 
-
-	//最初はスタートに
+	// 最初はスタートに
 	void Awake()
 	{
+		timer = timeLimit; // 時間制限を設定する
 		Instance = this;
 		SetCurrentState(GameState.Start);
 	}
@@ -58,9 +63,9 @@ public class GameManager : MonoBehaviour
 				PlayingAction();
 				break;
 			case GameState.TimeUp:
-				TimeUpAction();
+				StartCoroutine(TimeUpCoroutine());
 				break;
-			case GameState.EmemyWin:
+			case GameState.EnemyWin:
 				EmemyWinAction();
 				break;
 			case GameState.EnemyLose:
@@ -77,6 +82,7 @@ public class GameManager : MonoBehaviour
 	// Startになったときの処理
 	void StartAction()
 	{
+
 	}
 
 	// Prepareになったときの処理
@@ -100,8 +106,11 @@ public class GameManager : MonoBehaviour
 		Debug.Log("Playing");
 	}
 
-	private void TimeUpAction()
+	IEnumerator TimeUpCoroutine()
 	{
+		timer = 0;
+		yield return new WaitForSeconds(1);
+		SetCurrentState(GameState.EnemyWin);
 	}
 
 	private void EmemyWinAction()
@@ -115,15 +124,17 @@ public class GameManager : MonoBehaviour
 	// Resultになったときの処理
 	void ResultAction()
 	{
-		isPlayerControl = false; //プレイヤーの操作を不可能にする
+		isPlayerControl = false; // プレイヤーの操作を不可能にする
 	}
 
-	GameState previousGamseState; //デバッグ用
+	GameState previousGamseState; // デバッグ用
 	void Update()
 	{
 		if (currentGameState != previousGamseState) OnGameStateChanged(currentGameState); // デバッグ用 インスペクターで変更しても対応するように
+
 		previousGamseState = currentGameState;
 
-
+		if (timer >= 0 && currentGameState == GameState.Playing) timer -= Time.deltaTime; // ゲーム中ならば制限時間を減らす
+		if (timer <= 0 && currentGameState == GameState.Playing) SetCurrentState(GameState.TimeUp); // 時間制限きたら, GameState.TimeUpに切り替える
 	}
 }

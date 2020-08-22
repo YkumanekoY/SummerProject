@@ -4,43 +4,48 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
 	private static SceneController sceneController;
+
+	public enum SceneName
+	{
+		Title,
+		Home,
+		Matching,
+		MainMapScene
+	}
+
+	//現在のシーン
+	[SerializeField] private SceneName currentScene;
+
+
 	void Awake()
 	{
 		if (!sceneController) sceneController = this;
 		else Destroy(this.gameObject);
+		currentScene = (currentScene == null) ? SceneName.Title : currentScene;
 	}
 
-	private void Start()
+	public void ChangeScene(SceneName sceneName)
 	{
-
-	}
-
-	public void ChangeScene(string sceneName)
-	{
-		for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-			if (SceneManager.GetSceneByBuildIndex(i).name == sceneName)
-			{
-				SceneManager.LoadScene(sceneName);
-				return;
-			}
-	}
-
-	// --------------------以下デバッグ用--------------------
-	public void DebugChangeScene(int sceneNum)
-	{
-		SceneManager.LoadScene(sceneNum);
+		currentScene = sceneName;
+		switch (sceneName)
+		{
+			case SceneName.Title:
+				SceneManager.LoadScene("Title");
+				break;
+			case SceneName.Home:
+				SceneManager.LoadScene("Home");
+				break;
+			case SceneName.Matching:
+				SceneManager.LoadScene("Matching");
+				break;
+			case SceneName.MainMapScene:
+				SceneManager.LoadScene("MainMapScene");
+				break;
+		}
 	}
 
 	void Update()
 	{
-		if (Input.GetKey(KeyCode.Q)) { DebugChangeScene(0); }
-		if (Input.GetKey(KeyCode.W)) { DebugChangeScene(1); }
-		if (Input.GetKey(KeyCode.E)) { DebugChangeScene(2); }
-		if (Input.GetKey(KeyCode.R)) { DebugChangeScene(3); }
-		if (Input.GetKey(KeyCode.T)) { DebugChangeScene(4); }
-		// if (Input.GetKey(KeyCode.Y)) { DebugChangeScene(5); }
-		// if (Input.GetKey(KeyCode.U)) { DebugChangeScene(6); }
-		// if (Input.GetKey(KeyCode.I)) { DebugChangeScene(7); }
-		// if (Input.GetKey(KeyCode.O)) { DebugChangeScene(8); }
+
 	}
 }
