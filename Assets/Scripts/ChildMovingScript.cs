@@ -10,7 +10,7 @@ public class ChildMovingScript : MonoBehaviour
     private Rigidbody2D rigd;
     float childSpeed = 5.0f;// 子供のスピード
     private bool escape = true;
-    public GameObject childPrefab;
+    public GameObject itemPrefab;
     [SerializeField]
     Transform itemList;
 
@@ -40,7 +40,7 @@ public class ChildMovingScript : MonoBehaviour
         if (collision.gameObject.tag == "Item")
         {
             Destroy(collision.gameObject);
-            Instantiate(childPrefab, transform.position, Quaternion.identity, itemList);
+            Instantiate(itemPrefab, transform.position, Quaternion.identity, itemList);
         }
         if(collision.gameObject.tag == "Enemy")
         {
