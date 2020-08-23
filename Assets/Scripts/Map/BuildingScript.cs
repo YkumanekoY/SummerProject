@@ -26,27 +26,10 @@ public class BuildingScript : MonoBehaviour
 
 		insideObject.SetActive(false);
 	}
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		Debug.Log("atack");
-	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("in");
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player")) //自分だったら屋根を見えなくする
 		{
 			roof.SetActive(false);
 			insideObject.SetActive(true);
@@ -55,7 +38,7 @@ public class BuildingScript : MonoBehaviour
 	void OnTriggerExit2D(Collider2D other)
 	{
 		Debug.Log("out");
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player")) //自分だったら屋根を戻す
 		{
 			roof.SetActive(true);
 			insideObject.SetActive(false);
