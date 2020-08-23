@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	public GameState GetCurrentGameState() { return currentGameState; }
 
 	[SerializeField] private MainMap_UIManager uIManager;
+	private int SealedCharmCount = 0;
 
 	// タイマー関係
 	[SerializeField] private float timer;
@@ -107,6 +108,13 @@ public class GameManager : MonoBehaviour
 	{
 		isPlayerControl = true; //プレイヤーの操作を可能にする
 		Debug.Log("Playing");
+	}
+
+	// SealedCharmが増えた時の処理
+	public void IncreaseSealedCharm()
+	{
+		SealedCharmCount++;
+		if (SealedCharmCount > 4) SetCurrentState(GameManager.GameState.EnemyLose);
 	}
 
 	IEnumerator TimeUpCoroutine()
