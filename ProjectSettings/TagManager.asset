@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Child
+  - Item
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -38,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Building_floor
+    uniqueID: 3403116441
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Building_wall
+    uniqueID: 3657240713
+    locked: 0
+  - name: Building_roof
+    uniqueID: 3419157535
     locked: 0
