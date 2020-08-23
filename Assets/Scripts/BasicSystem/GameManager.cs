@@ -6,8 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance; //  GameManagerは唯一無二の存在
-
-	// State管理一覧
+										// State管理一覧
 	public enum GameState
 	{
 		Start,
@@ -21,6 +20,9 @@ public class GameManager : MonoBehaviour
 
 	// 現在のState
 	[SerializeField] private GameState currentGameState;
+	public GameState GetCurrentGameState() { return currentGameState; }
+
+	[SerializeField] private MainMap_UIManager uIManager;
 
 	// タイマー関係
 	[SerializeField] private float timer;
@@ -82,20 +84,21 @@ public class GameManager : MonoBehaviour
 	// Startになったときの処理
 	void StartAction()
 	{
-
+		SetCurrentState(GameState.Prepare);
 	}
 
 	// Prepareになったときの処理
 	IEnumerator PrepareCoroutine()
 	{
 		//カウントダウンの表示
-		Debug.Log("3");
+		uIManager.SetCountDownLabel("3");
 		yield return new WaitForSeconds(1);
-		Debug.Log("2");
+		uIManager.SetCountDownLabel("2");
 		yield return new WaitForSeconds(1);
-		Debug.Log("1");
+		uIManager.SetCountDownLabel("1");
 		yield return new WaitForSeconds(1);
-		Debug.Log("Start!");
+		uIManager.SetCountDownLabel("Start!");
+		yield return new WaitForSeconds(1f);
 		SetCurrentState(GameState.Playing);
 	}
 
