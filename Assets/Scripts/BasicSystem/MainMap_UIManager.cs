@@ -15,7 +15,7 @@ public class MainMap_UIManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		countDownLabel.text = "3";
+		countDownLabel.text = "";
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 
