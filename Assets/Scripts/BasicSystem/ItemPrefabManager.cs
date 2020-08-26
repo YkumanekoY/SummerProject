@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemPrefabManager : MonoBehaviour
 {
 	public enum ItemName
 	{
 		SealedCharm, revivalCharm
 	}
 
-	public GameObject[] ItemPrefabs;
+	public GameObject[] itemPrefabs;
 }
