@@ -10,7 +10,6 @@ public class ChildMovingScript : MonoBehaviour
     private Rigidbody2D rigd;
     float childSpeed = 5.0f;// 子供のスピード
     bool escape = true;
-    public GameObject itemPrefab;
     [SerializeField]
     Transform itemList;
 
@@ -35,17 +34,26 @@ public class ChildMovingScript : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "Item")
+        if (collider.gameObject.tag == "Item")
         {
-            Destroy(collision.gameObject);
-            Instantiate(itemPrefab, transform.position, Quaternion.identity, itemList);
+            collider.gameObject.GetComponent<ItemPoint>().SearchItem();
         }
+    }
+
+    void GetItem(GameObject item)
+    {
+        Instantiate(item, transform.position, Quaternion.identity, itemList);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if(collision.gameObject.tag == "Enemy")
         {
             rigd.bodyType = RigidbodyType2D.Kinematic;
             escape = false;
-        }
+        } 
     }
 }
