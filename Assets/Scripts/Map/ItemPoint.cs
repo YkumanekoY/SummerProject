@@ -7,12 +7,13 @@ public class ItemPoint : MonoBehaviour
 	public bool isSealedCharmContain = false;
 	public bool isRevivalCharmContain = false;
 
-	public void SearchItem()
+	public void SearchItem(GameObject Player)
 	{
 		if (isSealedCharmContain)
 		{
 			// Player.GetItem(0)
 			isSealedCharmContain = false;
+			Player.GetComponent
 			Debug.Log("封印のお札だ");
 		}
 		else if (isRevivalCharmContain)
@@ -26,7 +27,4 @@ public class ItemPoint : MonoBehaviour
 			Debug.Log("何も入っていなかった");
 		}
 	}
-
-
-
 }
