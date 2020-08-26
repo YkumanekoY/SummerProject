@@ -9,7 +9,7 @@ public class ChildMovingScript : MonoBehaviour
     private float y; //y方向のInputの値
     private Rigidbody2D rigd;
     float childSpeed = 5.0f;// 子供のスピード
-    private bool escape = true;
+    bool escape = true;
     public GameObject itemPrefab;
     [SerializeField]
     Transform itemList;
@@ -26,12 +26,12 @@ public class ChildMovingScript : MonoBehaviour
     {
         if(escape == true)
         {
-        x = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
-        y = Input.GetAxis("Vertical"); //z方向のInputの値を取得
+            x = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
+            y = Input.GetAxis("Vertical"); //z方向のInputの値を取得
 
-        rigd.velocity = new Vector2(x * childSpeed, y * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
+            rigd.velocity = new Vector2(x * childSpeed, y * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
 
-        child_pos = transform.position; //プレイヤーの位置を更新
+            child_pos = transform.position; //プレイヤーの位置を更新
         }
     }
 
