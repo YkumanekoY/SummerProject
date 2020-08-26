@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
-public class StageGenerator : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
 	// Buildings
 	private const int numBuilding = 10;
@@ -23,14 +24,21 @@ public class StageGenerator : MonoBehaviour
 
 	[SerializeField] private BuildingComponents[] buildings;
 
+	private Transform[] buildingList;
+
 	// Items
 	private int sealedCharmCount = 4;   //封印のお札の数
 	private int revivalCharmCount = 2;  //復活のお札の数
+
+	// チェックポイント
+	[SerializeField]
+	private GameObject sealedPoint, revivalPoint;
 
 	private void Awake()
 	{
 		// buildingCount棟の建物のうち、ランダムにアイテムを分布させる
 		int[] itemPos = new int[numBuilding]; //0：からっぽ 1:封印のお札 2:復活のお札
+		buildingList = new Transform[numBuilding];
 
 		for (int i = 0; i < sealedCharmCount + revivalCharmCount; i++)
 			if (i < sealedCharmCount) itemPos[i] = 1;
@@ -66,13 +74,24 @@ public class StageGenerator : MonoBehaviour
 				if (itemPos[i] == 1) itemPoint.GetComponent<ItemPoint>().isSealedCharmContain = true;
 				if (itemPos[i] == 2) itemPoint.GetComponent<ItemPoint>().isRevivalCharmContain = true;
 			}
-
 			building.gameObject.GetComponent<BuildingScript>().SetComponents(r, w, insideO, f); //　生成したパーツを親に関連づける
+			buildingList[i] = building;
 		}
 	}
 
-	void Start()
+	// 檻を開く
+	public void OpenjailCell()
 	{
+		revivalPoint.transform.GetChild(1).gameObject.SetActive(true);
+		revivalPoint.transform.GetChild(0).gameObject.SetActive(false);
+		StartCoroutine(CloseJailCell());
+	}
 
+	// 檻を閉じる
+	IEnumerator CloseJailCell()
+	{
+		yield return new WaitForSeconds(5f);
+		revivalPoint.transform.GetChild(1).gameObject.SetActive(true);
+		revivalPoint.transform.GetChild(0).gameObject.SetActive(false);
 	}
 }
