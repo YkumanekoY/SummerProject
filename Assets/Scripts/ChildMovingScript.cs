@@ -38,11 +38,11 @@ public class ChildMovingScript : MonoBehaviour
     {
         if (collider.gameObject.tag == "Item")
         {
-            collider.gameObject.GetComponent<ItemPoint>().SearchItem();
+            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
         }
     }
 
-    void GetItem(GameObject item)
+    public void GetItem(GameObject item)
     {
         Instantiate(item, transform.position, Quaternion.identity, itemList);
     }
