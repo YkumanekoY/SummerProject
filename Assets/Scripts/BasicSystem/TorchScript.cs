@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class TorchScript : MonoBehaviour
 {
-    int[] ChildGameNumber;//子供の配列番号を格納する変数
+    int[] childGameObjectNumber;//子供の配列番号を格納する変数
     float childDirection;//子供たちからの角度をいれる変数
     Vector3 direction;//
     GameObject EnemyGameObject;
-    ememyMovingScript script;
-
+    KidnappingScript script;
 
     // Start is called before the first frame update
     void Start()
     {
         EnemyGameObject = GameObject.Find("Ghost");
-        script = gameObject.GetComponent<ememyMovingScript>();
+        script = gameObject.GetComponent<KidnappingScript>();
     }
 
     // Update is called once per frame
@@ -25,9 +24,9 @@ public class TorchScript : MonoBehaviour
         {
             childDirection = Vector3.Distance(EnemyGameObject.transform.position, transform.position);
 
-            if(childDirection < 2.5f)
+            if(childDirection < 5f)
             {
-
+                GameObject.Find("Child").transform.Find("Torch").gameObject.SetActive(true);
             }
         }
 
