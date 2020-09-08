@@ -14,7 +14,7 @@ public class ItemManager : MonoBehaviour
 
     //　アイテムを持っているかどうかのフラグ
     [SerializeField]
-    private bool[] itemFlags = new bool[6];
+    public bool[] itemFlags = new bool[5];
 
     // Start is called before the first frame update
     void Start()

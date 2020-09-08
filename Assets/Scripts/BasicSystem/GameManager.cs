@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
 	public GameState GetCurrentGameState() { return currentGameState; }
 
 	[SerializeField] private MainMap_UIManager uIManager;
-	private int SealedCharmCount = 0;
+	private int sealedCharmCount, revivalCharmCount;
+	private bool isJailSellOpen = false; //牢屋が閉じているかどうか
 
 	// タイマー関係
 	[SerializeField] private float timer;
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
 	// プレイヤーの操作が可能か
 	public bool isPlayerControl;
 
+	// 建物関連
+	[SerializeField] private StageManager stageManager;
+
+	// シーン関連
+	[SerializeField] private SceneController sceneController;
 
 	// 最初はスタートに
 	void Awake()
@@ -40,6 +46,11 @@ public class GameManager : MonoBehaviour
 		timer = timeLimit; // 時間制限を設定する
 		Instance = this;
 		SetCurrentState(GameState.Start);
+	}
+
+	void Start()
+	{
+		sceneController = GameObject.Find("SceneManager").GetComponent<SceneController>();
 	}
 
 	//　ほかのスクリプトから更新できる
@@ -113,8 +124,22 @@ public class GameManager : MonoBehaviour
 	// SealedCharmが増えた時の処理
 	public void IncreaseSealedCharm()
 	{
-		SealedCharmCount++;
-		if (SealedCharmCount > 4) SetCurrentState(GameManager.GameState.EnemyLose);
+		sealedCharmCount++;
+		if (sealedCharmCount >= 4) SetCurrentState(GameManager.GameState.EnemyLose);
+	}
+
+	// RevivalCharmが増えた時の処理
+	public void IncreaseRevivalCharm()
+	{
+		revivalCharmCount++;
+		if (revivalCharmCount >= 2) OpenJailCell();
+	}
+
+	//復活のお札が集まった時の処理
+	public void OpenJailCell()
+	{
+		revivalCharmCount = 0;
+		stageManager.OpenjailCell();
 	}
 
 	IEnumerator TimeUpCoroutine()
