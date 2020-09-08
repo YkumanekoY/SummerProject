@@ -19,11 +19,17 @@ public class KidnappingScript : MonoBehaviour
     int childNumber = 0;
     float lightActiveTime = 4;
     StoppingGhostScript stoppingGhostScript;
+    TorchScript torchScript;
 
     // Start is called before the first frame update
     void Awake()
     {
        playersObject =  GameObject.FindGameObjectsWithTag("Child");
+       for(int i = 0; i < playersObject.Length; i++)
+        {
+            torchScript = playersObject[i].GetComponent<TorchScript>();
+            torchScript.childGameObjectNumber = i;
+        }
     }
 
     private void Start()
