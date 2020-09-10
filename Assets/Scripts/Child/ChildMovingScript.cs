@@ -52,8 +52,14 @@ public class ChildMovingScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            rigd.bodyType = RigidbodyType2D.Kinematic;
-            escape = false;
+            StopPlayer();
         } 
+    }
+
+    //プレイヤーの動きを止めるメソッド
+    public void StopPlayer()
+    {
+        rigd.bodyType = RigidbodyType2D.Kinematic;
+        escape = false;
     }
 }
