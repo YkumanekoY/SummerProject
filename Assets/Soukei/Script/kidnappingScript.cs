@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class kidnappingScript : MonoBehaviour
+public class KidnappingScript : MonoBehaviour
 {
     GameObject[] playersObject;
     Vector3 dir;
@@ -10,13 +10,37 @@ public class kidnappingScript : MonoBehaviour
     float catchableDistance = 4;
     float catchableAngle = 60;
     float[] angle ;
+    float kidnappingInterval = 2;
     float catchingInterval = 2;
+    float releasingDirection = 3;
     bool isCatchable = true;
+    bool[] isInterruptedArray;
+    int isInterruptedArrayNumber;
+    int childNumber = 0;
+    float lightActiveTime = 4;
+    StoppingGhostScript stoppingGhostScript;
+    TorchScript torchScript;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-       playersObject =  GameObject.FindGameObjectsWithTag("Human");
+       playersObject =  GameObject.FindGameObjectsWithTag("Child");
+       for(int i = 0; i < playersObject.Length; i++)
+        {
+            torchScript = playersObject[i].GetComponent<TorchScript>();
+            torchScript.childGameObjectNumber = i;
+        }
+    }
+
+    private void Start()
+    {
+        isInterruptedArray = new bool[playersObject.Length];
+        stoppingGhostScript = GetComponent<StoppingGhostScript>();
+
+        for (int i = 0; i < playersObject.Length; i++)
+        {
+            isInterruptedArray[i] = false;
+        }
     }
 
     // Update is called once per frame
@@ -26,6 +50,7 @@ public class kidnappingScript : MonoBehaviour
         {
             if (isCatchable)
             {
+                isCatchable = false;
                 dirArray = new float[playersObject.Length];
                 angle = new float[playersObject.Length];
                 Vector3 enemyLookingVector = transform.TransformDirection(Vector3.up);
@@ -36,17 +61,16 @@ public class kidnappingScript : MonoBehaviour
                     Vector3 targetDirection = playersObject[i].transform.position - transform.position;
                     angle[i] = Vector3.Angle(enemyLookingVector, targetDirection);
                     dirArray[i] = Vector3.Distance(playersObject[i].transform.position, transform.position);
-                    Debug.Log(dirArray[i]);
 
                 }
-                KidnappingMethod();
+                StartCoroutine("KidnappingMethod");
             }
             StartCoroutine("IntervalSecond");
         }
     }
 
-    //距離の長さがつかめる距離より短いかどうかを判別
-    void KidnappingMethod()
+    //一番近くにいて射程角度内にいる子供を数秒間捕まえたのち封印するスクリプト
+    IEnumerator KidnappingMethod()
     {
         if (Mathf.Min(dirArray) < catchableDistance)
         {
@@ -56,6 +80,11 @@ public class kidnappingScript : MonoBehaviour
                 {
                     if (-catchableAngle < angle[i] && angle[i] < catchableAngle)
                     {
+                        childNumber = i;
+                        playersObject[i].transform.position = this.transform.position + new Vector3(0.5f, 0.5f, 0);
+                        playersObject[i].transform.parent = this.transform;
+                        yield return new WaitForSeconds(kidnappingInterval);
+                        playersObject[i].transform.parent = null;
                         playersObject[i].transform.position = new Vector3(Random.Range(2f, 4f), Random.Range(2f, 4f), 0);
                     }
                 }
@@ -63,9 +92,55 @@ public class kidnappingScript : MonoBehaviour
         }
     }
 
+    //幽霊の攻撃のインターバルを管理するメソッド
     IEnumerator IntervalSecond()
     {
         yield return new WaitForSeconds(catchingInterval);
         isCatchable = true;
     }
+
+    //子供攻撃された時に子供の配列番号に対応する配列の箇所をtrueにしてそれが全部trueだったら攻撃を中断しスタンするメソッド
+    public void AttackedbyLight(int childNumber)
+    {
+        isInterruptedArray[childNumber] = true;
+        StartCoroutine(MakingTruetoFalseMethod(childNumber));
+        if (IsAllInterruptedArrayTrue() > playersObject.Length-2 )
+        {
+            playersObject[childNumber].transform.position = this.transform.position + Vector3.up * releasingDirection;
+            StopCoroutine("KidnappingMethod");
+            stoppingGhostScript.StoppingEnemyMethod();
+            for (int i = 0; i < playersObject.Length; i++)
+            {
+                isInterruptedArray[i] = false;
+            }
+        }
+    }
+
+    //子供に攻撃されているかどうかを管理している配列のtrueの合計数を数えるメソッド
+    public int IsAllInterruptedArrayTrue()
+    {
+        for (int i = 0; i < playersObject.Length; i++)
+        {
+            if (isInterruptedArray[i] == false)
+            {
+                continue;
+            }
+            if (isInterruptedArray[i] == true)
+            {
+                isInterruptedArrayNumber++;
+                continue;
+            }
+            return isInterruptedArrayNumber ;
+        }
+        return isInterruptedArrayNumber;
+    }
+
+    //攻撃されてから数秒後に配列のtrueをfalseに変えるメソッド
+    IEnumerator MakingTruetoFalseMethod(int arrayNumber)
+    {
+        yield return new WaitForSeconds(lightActiveTime);
+        isInterruptedArray[arrayNumber] = false;
+    }
+
 }
+

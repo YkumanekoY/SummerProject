@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 563155558}
   - component: {fileID: 563155557}
   m_Layer: 0
-  m_Name: Enemy2 (1)
-  m_TagString: Human
+  m_Name: Child3
+  m_TagString: Child
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,8 +210,8 @@ GameObject:
   - component: {fileID: 591747730}
   - component: {fileID: 591747729}
   m_Layer: 0
-  m_Name: Enemy2
-  m_TagString: Human
+  m_Name: Child2
+  m_TagString: Child
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,8 +289,8 @@ GameObject:
   - component: {fileID: 681487755}
   - component: {fileID: 681487754}
   m_Layer: 0
-  m_Name: Enemy2 (2)
-  m_TagString: Human
+  m_Name: Child4
+  m_TagString: Child
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -371,9 +371,10 @@ GameObject:
   - component: {fileID: 1277521992}
   - component: {fileID: 1277521993}
   - component: {fileID: 1277521994}
+  - component: {fileID: 1277521995}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,6 +502,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 7218222481500908998, guid: a70a37c9deba84175831ab15bdfa69b9,
     type: 3}
+--- !u!114 &1277521995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277521988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba823489e31e4e95a34240f96f5476c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoppingTime: 3
 --- !u!1 &1310578442
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,8 +526,8 @@ GameObject:
   - component: {fileID: 1310578444}
   - component: {fileID: 1310578443}
   m_Layer: 0
-  m_Name: Enemy2 (3)
-  m_TagString: Human
+  m_Name: Child5
+  m_TagString: Child
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -749,8 +763,8 @@ GameObject:
   - component: {fileID: 1904150741}
   - component: {fileID: 1904150740}
   m_Layer: 0
-  m_Name: Enemy1
-  m_TagString: Human
+  m_Name: Child
+  m_TagString: Child
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

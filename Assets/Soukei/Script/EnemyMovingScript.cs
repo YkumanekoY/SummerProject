@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ememyMovingScript : MonoBehaviour
+public class EnemyMovingScript : MonoBehaviour
 {
    
         public readonly float SPEED = 0.1f;
