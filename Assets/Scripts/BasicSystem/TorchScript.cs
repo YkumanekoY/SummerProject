@@ -27,6 +27,11 @@ public class TorchScript : MonoBehaviour
             if(childDirection < 5f)
             {
                 GameObject.Find("Child").transform.Find("Torch").gameObject.SetActive(true);
+                
+                //秒数のコルーチンを開始
+                StartCoroutine("torchCount");
+                //script.AttackedbyLight();
+
                 /*if(ライトがゴーストに当たったら)
                  * {
                  *  kidnappingScript.AttackedbyLight(childGameObjectNumber);
@@ -36,4 +41,16 @@ public class TorchScript : MonoBehaviour
         }
 
     }
+
+    //トーチの制限時間を設けるメソッド
+    IEnumerator torchCount()
+    {
+        //3秒停止させる
+        yield return new WaitForSeconds(3);
+
+        //再びライトをオフに
+        GameObject.Find("Child").transform.Find("Torch").gameObject.SetActive(false);
+
+    }
+
 }
