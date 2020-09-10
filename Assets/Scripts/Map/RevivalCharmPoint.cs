@@ -11,7 +11,7 @@ public class RevivalCharmPoint : MonoBehaviour
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 
-	void SetSealedCharm()
+	void SetRevivalCharm()
 	{
 		gameManager.IncreaseRevivalCharm();
 	}
