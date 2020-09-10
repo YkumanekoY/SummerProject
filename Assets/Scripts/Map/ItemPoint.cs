@@ -42,7 +42,7 @@ public class ItemPoint : MonoBehaviour
 
 	public void HidingItem(string itemName)
 	{
-		if (itemName = "SealedCharm") isSealedCharmContain = true;
-		else if (itemName = "RevivalCharm") isRevivalCharmContain = true;
+		if (itemName == "SealedCharm") isSealedCharmContain = true;
+		else if (itemName == "RevivalCharm") isRevivalCharmContain = true;
 	}
 }
