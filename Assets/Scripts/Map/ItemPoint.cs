@@ -33,4 +33,16 @@ public class ItemPoint : MonoBehaviour
 			Debug.Log("何も入っていなかった");
 		}
 	}
+
+	public bool isItemPut()
+	{
+		if(isSealedCharmContain == true || isRevivalCharmContain == true) return false;
+		else return true;
+	}
+
+	public void HidingItem(string itemName)
+	{
+		if (itemName == "SealedCharm") isSealedCharmContain = true;
+		else if (itemName == "RevivalCharm") isRevivalCharmContain = true;
+	}
 }
