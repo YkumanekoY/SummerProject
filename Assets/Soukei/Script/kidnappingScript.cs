@@ -19,6 +19,7 @@ public class KidnappingScript : MonoBehaviour
     int childNumber = 0;
     float lightActiveTime = 4;
     StoppingGhostScript stoppingGhostScript;
+    ChildMovingScript childMovingScript;
 
     // Start is called before the first frame update
     void Awake()
