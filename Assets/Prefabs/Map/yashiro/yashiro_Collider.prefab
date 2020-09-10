@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1810631879734644609
+--- !u!1 &4621046911517391114
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 765119928077511350}
-  - component: {fileID: 5718974198075479574}
-  - component: {fileID: 6299894456505653476}
-  - component: {fileID: 9069495627159981122}
-  - component: {fileID: 5063835753134232605}
-  - component: {fileID: 6171852304297112146}
-  - component: {fileID: 9161070348653139700}
-  - component: {fileID: 3929302320090793860}
-  - component: {fileID: 2787178215418186694}
-  - component: {fileID: 6108047792828011872}
+  - component: {fileID: 6025720860443008061}
+  - component: {fileID: 1611172716689612957}
+  - component: {fileID: 1039294771019181679}
+  - component: {fileID: 2656204104256748233}
+  - component: {fileID: 2253966396977390230}
+  - component: {fileID: 911762663043892441}
+  - component: {fileID: 2748111970491801727}
+  - component: {fileID: 8036187634484998415}
+  - component: {fileID: 9200821495319330125}
+  - component: {fileID: 992424332739437547}
   m_Layer: 0
-  m_Name: yashiro
-  m_TagString: Untagged
+  m_Name: yashiro_Collider
+  m_TagString: SealedCharmPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &765119928077511350
+--- !u!4 &6025720860443008061
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52, y: 89.5, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_GameObject: {fileID: 4621046911517391114}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5718974198075479574
+--- !u!212 &1611172716689612957
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6299894456505653476
+--- !u!61 &1039294771019181679
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -113,13 +113,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 3.16}
   m_EdgeRadius: 0
---- !u!61 &9069495627159981122
+--- !u!61 &2656204104256748233
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -139,13 +139,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 3.16}
   m_EdgeRadius: 0
---- !u!61 &5063835753134232605
+--- !u!61 &2253966396977390230
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -165,13 +165,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!61 &6171852304297112146
+--- !u!61 &911762663043892441
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -191,13 +191,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!61 &9161070348653139700
+--- !u!61 &2748111970491801727
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -217,13 +217,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!61 &3929302320090793860
+--- !u!61 &8036187634484998415
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -243,13 +243,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!61 &2787178215418186694
+--- !u!61 &9200821495319330125
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -269,13 +269,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.3, y: 2.8}
   m_EdgeRadius: 0
---- !u!61 &6108047792828011872
+--- !u!61 &992424332739437547
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810631879734644609}
+  m_GameObject: {fileID: 4621046911517391114}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
