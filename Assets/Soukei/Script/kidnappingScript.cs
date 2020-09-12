@@ -5,6 +5,7 @@ using UnityEngine;
 public class KidnappingScript : MonoBehaviour
 {
     GameObject[] playersObject;
+    GameObject jail;
     Vector3 dir;
     float[] dirArray;
     float catchableDistance = 4;
@@ -20,10 +21,12 @@ public class KidnappingScript : MonoBehaviour
     float lightActiveTime = 4;
     StoppingGhostScript stoppingGhostScript;
     TorchScript torchScript;
+    
 
     // Start is called before the first frame update
     void Awake()
     {
+        jail = GameObject.Find("JailCell");
         playersObject = GameObject.FindGameObjectsWithTag("Child");
         for (int i = 0; i < playersObject.Length; i++)
         {
@@ -85,7 +88,7 @@ public class KidnappingScript : MonoBehaviour
                         playersObject[i].transform.parent = this.transform;
                         yield return new WaitForSeconds(kidnappingInterval);
                         playersObject[i].transform.parent = null;
-                        playersObject[i].transform.position = new Vector3(Random.Range(2f, 4f), Random.Range(2f, 4f), 0);
+                        playersObject[i].transform.position = jail.transform.position;
                     }
                 }
             }
