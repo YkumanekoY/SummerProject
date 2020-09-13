@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
 	public void OpenJailCell()
 	{
 		revivalCharmCount = 0;
+		isPlayerKidnappedArray = new bool[childrenObjects.Length];
 		stageManager.OpenjailCell();
 	}
 
