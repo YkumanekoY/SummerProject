@@ -58,8 +58,6 @@ public class ChildMovingScript : MonoBehaviour
         {
             StopPlayer();
         }
-
-
     }
 
     //プレイヤーの動きを止めるメソッド
