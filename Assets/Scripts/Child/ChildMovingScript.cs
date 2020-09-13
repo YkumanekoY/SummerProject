@@ -14,6 +14,7 @@ public class ChildMovingScript : MonoBehaviour
     Transform itemList;
     GameManager gameManager;
     GameObject managerObject;
+    ItemPoint itemPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -39,13 +40,11 @@ public class ChildMovingScript : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D collider)
-    {
-        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+    { 
+       if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (collider.gameObject.tag == "Item")
-            {
-                collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
-            }
+            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
+            itemPoint = collider.gameObject.GetComponent<ItemPoint>();
         }
     }
 
