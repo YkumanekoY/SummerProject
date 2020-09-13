@@ -14,7 +14,10 @@ public class TransformingScript : MonoBehaviour
     bool isGhostLooking = false;
 
     KidnappingScript kidnapping;
-   
+
+    GameManager gameManager;
+    GameObject gameManagerObj;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +25,14 @@ public class TransformingScript : MonoBehaviour
         humanLooking = transform.GetChild(0).gameObject;
         ghostLooking = transform.GetChild(1).gameObject;
         kidnapping = GetComponent<KidnappingScript>();
+        gameManagerObj = GameObject.Find("GameManager");
+        gameManager = gameManagerObj.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) && gameManager.isPlayerControl)
         {
             if (isGhostLooking)
             {
