@@ -39,7 +39,7 @@ public class ChildMovingScript : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.B))
         {
             collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
             itemPoint = collider.gameObject.GetComponent<ItemPoint>();
@@ -52,21 +52,22 @@ public class ChildMovingScript : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            StopPlayer();
-        }
-    }
+        if(itemList.childCount == 0) return;
+		if (other.gameObject.CompareTag("SealedCharmPoint"))
+		{
+            if(!itemList.Find("SealedCharm(Clone)")) return;
+			gameManager.IncreaseSealedCharm();
+			Destroy(itemList.Find("SealedCharm(Clone)").gameObject);
+		}
 
-    //プレイヤーの動きを止めるメソッド
-    public void StopPlayer()
-    {
-        rigd.bodyType = RigidbodyType2D.Kinematic;
-    }
-
-   
-
+        if (other.gameObject.CompareTag("RevivalCharmPoint"))
+		{
+            if(!itemList.Find("RevivalCharm(Clone)")) return;
+			gameManager.IncreaseRevivalCharm();
+			Destroy(itemList.Find("RevivalCharm(Clone)").gameObject);
+		}
+	}
 }
 

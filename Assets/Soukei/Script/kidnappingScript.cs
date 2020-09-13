@@ -35,14 +35,13 @@ public class KidnappingScript : MonoBehaviour
 
     private void Start()
     {
-        isInterruptedArray = new bool[playersObject.Length];
+		playersObject = gameManager.childrenObjects;
+		isInterruptedArray = new bool[playersObject.Length];
         stoppingGhostScript = GetComponent<StoppingGhostScript>();
-
-        playersObject = new GameObject[gameManager.childrenObjects.Length];
 
         for (int i = 0; i < playersObject.Length; i++)
         {
-            torchScript = playersObject[i].GetComponent<TorchScript>();
+            torchScript = playersObject[i].transform.Find("TorchManager").gameObject.GetComponent<TorchScript>();
             torchScript.childGameObjectNumber = i;
         }
 
