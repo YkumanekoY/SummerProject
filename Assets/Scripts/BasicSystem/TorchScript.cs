@@ -6,16 +6,19 @@ public class TorchScript : MonoBehaviour
 {
     public int childGameObjectNumber = 0;//子供の配列番号を格納する変数
     float childDirection;//子供たちからの角度をいれる変数
-    Vector3 direction;//
+    Vector2 direction;
     GameObject EnemyGameObject;
     KidnappingScript kidnappingScript;
     float torchInterval = 3;
+    private Rigidbody rigd;
+    private Vector3 Player_pos; //プレイヤーのポジション
 
     // Start is called before the first frame update
     void Start()
     {
         EnemyGameObject = GameObject.Find("Ghost");
         kidnappingScript = gameObject.GetComponent<KidnappingScript>();
+        rigd = GetComponent<Rigidbody>(); //トーチのRigidbodyを取得
     }
 
     // Update is called once per frame
@@ -23,21 +26,15 @@ public class TorchScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            childDirection = Vector3.Distance(EnemyGameObject.transform.position, transform.position);
-
-            if(childDirection < 5f)
+            childDirection = Vector3.Distance(EnemyGameObject.transform.position, transform.position);// 敵との距離を把握
+          
+            if (childDirection < 5f)
             {
-                GameObject.Find("Child").transform.Find("Torch").gameObject.SetActive(true);
+                GameObject.Find("TorchManager").transform.Find("Torch").gameObject.SetActive(true);
                 
                 //秒数のコルーチンを開始
-                StartCoroutine("torchCount");
-                //script.AttackedbyLight();
-
-                /*if(ライトがゴーストに当たったら)
-                 * {
-                 *  kidnappingScript.AttackedbyLight(childGameObjectNumber);
-                 * }
-                 */
+                StartCoroutine("torchCount");   
+                kidnappingScript.AttackedbyLight(childGameObjectNumber);
             }
         }
 
@@ -50,7 +47,7 @@ public class TorchScript : MonoBehaviour
         yield return new WaitForSeconds(torchInterval);
 
         //再びライトをオフに
-        GameObject.Find("Child").transform.Find("Torch").gameObject.SetActive(false);
+        GameObject.Find("TorchManager").transform.Find("Torch").gameObject.SetActive(false);
 
     }
 
