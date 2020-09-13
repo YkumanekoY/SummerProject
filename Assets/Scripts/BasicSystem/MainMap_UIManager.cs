@@ -43,7 +43,7 @@ public class MainMap_UIManager : MonoBehaviour
 		timeLabel.text = niceTime;
 	}
 
-	public void ResultPanel(string message){
+	public void SetResultPanel(string message){
 		resultMessage.text = message + "の勝ち！";
 		int minutes = Mathf.FloorToInt(gameManager.GetTimer() / 60F);
 		int seconds = Mathf.FloorToInt(gameManager.GetTimer() - minutes * 60);
