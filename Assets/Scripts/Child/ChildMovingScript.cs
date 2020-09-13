@@ -32,16 +32,14 @@ public class ChildMovingScript : MonoBehaviour
         {
             inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
             inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
-
             rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
-
             child_pos = transform.position; //プレイヤーの位置を更新
         }
     }
 
     void OnTriggerStay2D(Collider2D collider)
-    { 
-       if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.KeypadEnter))
+    {
+        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
             itemPoint = collider.gameObject.GetComponent<ItemPoint>();
@@ -69,6 +67,8 @@ public class ChildMovingScript : MonoBehaviour
     {
         rigd.bodyType = RigidbodyType2D.Kinematic;
     }
+
+   
 
 }
 
