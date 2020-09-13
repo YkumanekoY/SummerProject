@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 	public void IncreaseRevivalCharm()
 	{
 		revivalCharmCount++;
-		if (revivalCharmCount >= 2) OpenJailCell();
+		if (revivalCharmCount >= 1) OpenJailCell();
 	}
 
 	//復活のお札が集まった時の処理
@@ -151,10 +151,14 @@ public class GameManager : MonoBehaviour
 
 	private void EmemyWinAction()
 	{
+		uIManager.SetResultPanel("鬼");
+		SetCurrentState(GameState.Result);
 	}
 
 	private void EnemyLoseAction()
 	{
+		uIManager.SetResultPanel("子供");
+		SetCurrentState(GameState.Result);
 	}
 
 	// Resultになったときの処理
