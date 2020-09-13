@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
 	// プレイヤーの操作が可能か
 	public bool isPlayerControl;
 
+	//子供が全員捕まっているか
+	public bool[] isPlayerKidnappedArray;
+
+	//子供を格納する配列
+	public GameObject[] childrenObjects;
+
 	// 建物関連
 	[SerializeField] private StageManager stageManager;
 
@@ -46,6 +52,8 @@ public class GameManager : MonoBehaviour
 		timer = timeLimit; // 時間制限を設定する
 		Instance = this;
 		SetCurrentState(GameState.Start);
+		childrenObjects = GameObject.FindGameObjectsWithTag("Child");
+		isPlayerKidnappedArray = new bool [childrenObjects.Length];
 	}
 
 	void Start()
@@ -134,6 +142,11 @@ public class GameManager : MonoBehaviour
 		revivalCharmCount++;
 		if (revivalCharmCount >= 1) OpenJailCell();
 	}
+
+	public void JudgingKidnappedChild(int childnumber)
+    {
+		isPlayerKidnappedArray[childnumber] = true;
+    }
 
 	//復活のお札が集まった時の処理
 	public void OpenJailCell()
