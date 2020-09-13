@@ -26,7 +26,7 @@ public class KidnappingScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        jail = GameObject.Find("JailCell");
+        jail = GameObject.FindGameObjectWithTag("RevivalCharmPoint");
         playersObject = GameObject.FindGameObjectsWithTag("Child");
         for (int i = 0; i < playersObject.Length; i++)
         {

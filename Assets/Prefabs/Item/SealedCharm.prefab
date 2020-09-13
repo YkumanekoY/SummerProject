@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6002253061206637964}
   m_Layer: 5
   m_Name: SealedCharm
-  m_TagString: Untagged
+  m_TagString: SealedCharm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

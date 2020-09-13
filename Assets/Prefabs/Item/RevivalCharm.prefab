@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5166091700351902977}
   - component: {fileID: 7227541629547410438}
   m_Layer: 5
-  m_Name: revivalCharm
-  m_TagString: Untagged
+  m_Name: RevivalCharm
+  m_TagString: RevivalCharm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
