@@ -13,6 +13,8 @@ public class ChildMovingScript : MonoBehaviourPunCallbacks
     bool escape = true;
     [SerializeField]
     Transform itemList;
+    [SerializeField]
+    Camera playerCamera;
     GameManager gameManager;
     GameObject managerObject;
     //ItemPoint itemPoint;
@@ -20,11 +22,17 @@ public class ChildMovingScript : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        child_pos = GetComponent<Transform>().position; //最初の時点でのプレイヤーのポジションを取得
-        managerObject = GameObject.Find("GameManager");
-        gameManager = managerObject.GetComponent<GameManager>();
-        rigd = GetComponent<Rigidbody2D>(); //プレイヤーのRigidbodyを取得
-        itemList.gameObject.SetActive(true);
+        if (photonView.IsMine)
+        {
+            child_pos = GetComponent<Transform>().position; //最初の時点でのプレイヤーのポジションを取得
+            managerObject = GameObject.Find("GameManager");
+            gameManager = managerObject.GetComponent<GameManager>();
+            rigd = GetComponent<Rigidbody2D>(); //プレイヤーのRigidbodyを取得
+            itemList.gameObject.SetActive(true);
+            playerCamera.gameObject.SetActive(true);
+
+        }
+
     }
 
     // Update is called once per frame
@@ -45,10 +53,13 @@ public class ChildMovingScript : MonoBehaviourPunCallbacks
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
+        if (photonView.IsMine)
         {
-            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
-            //itemPoint = collider.gameObject.GetComponent<ItemPoint>();
+            if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
+            {
+                collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
+                //itemPoint = collider.gameObject.GetComponent<ItemPoint>();
+            }
         }
     }
 
@@ -60,20 +71,24 @@ public class ChildMovingScript : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(itemList.childCount == 0) return;
-		if (other.gameObject.CompareTag("SealedCharmPoint"))
-		{
-            if(!itemList.Find("SealedCharm(Clone)")) return;
-			gameManager.IncreaseSealedCharm();
-			Destroy(itemList.Find("SealedCharm(Clone)").gameObject);
-		}
+        if (photonView.IsMine)
+        {
 
-        if (other.gameObject.CompareTag("RevivalCharmPoint"))
-		{
-            if(!itemList.Find("RevivalCharm(Clone)")) return;
-			gameManager.IncreaseRevivalCharm();
-			Destroy(itemList.Find("RevivalCharm(Clone)").gameObject);
-		}
+            if (itemList.childCount == 0) return;
+            if (other.gameObject.CompareTag("SealedCharmPoint"))
+            {
+                if (!itemList.Find("SealedCharm(Clone)")) return;
+                gameManager.IncreaseSealedCharm();
+                Destroy(itemList.Find("SealedCharm(Clone)").gameObject);
+            }
+
+            if (other.gameObject.CompareTag("RevivalCharmPoint"))
+            {
+                if (!itemList.Find("RevivalCharm(Clone)")) return;
+                gameManager.IncreaseRevivalCharm();
+                Destroy(itemList.Find("RevivalCharm(Clone)").gameObject);
+            }
+        }
 	}
 }
 
