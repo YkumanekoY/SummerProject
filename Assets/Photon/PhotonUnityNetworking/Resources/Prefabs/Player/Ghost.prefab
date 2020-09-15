@@ -197,19 +197,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3527172874021133455}
-<<<<<<< HEAD
   m_Enabled: 0
-=======
-  m_Enabled: 1
->>>>>>> e01adc3489716273626b06bca955a072d2921718
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8042128abff3041e18e7b27c1a87ad27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   enemyCamera: {fileID: 2679807314470006692}
-=======
->>>>>>> e01adc3489716273626b06bca955a072d2921718
   itemListObj: {fileID: 8138758772646044415}
 --- !u!50 &3527172874021133443
 Rigidbody2D:
@@ -258,10 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 7218222481500908998, guid: a70a37c9deba84175831ab15bdfa69b9,
     type: 3}
-<<<<<<< HEAD
   isGhostLooking: 0
-=======
->>>>>>> e01adc3489716273626b06bca955a072d2921718
 --- !u!114 &3527172874021133440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,11 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
   m_IsActive: 0
-=======
-  m_IsActive: 1
->>>>>>> e01adc3489716273626b06bca955a072d2921718
 --- !u!4 &6966018776276318481
 Transform:
   m_ObjectHideFlags: 0
@@ -596,14 +582,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemList
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 5549465288468177476, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-=======
->>>>>>> e01adc3489716273626b06bca955a072d2921718
     - target: {fileID: 5549465288468177479, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -709,7 +692,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: ObservedComponents.Array.size
@@ -720,8 +702,6 @@ PrefabInstance:
       propertyPath: ObservedComponents.Array.data[0]
       value: 
       objectReference: {fileID: 4260682575995713194}
-=======
->>>>>>> e01adc3489716273626b06bca955a072d2921718
     - target: {fileID: 5549465288468177478, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_Spacing
@@ -751,7 +731,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4463353913762431163}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!114 &4260682575995713194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 491447088941594129, guid: c8fc35695094c4129b8a1e8c45a3e457,
@@ -764,5 +743,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
->>>>>>> e01adc3489716273626b06bca955a072d2921718
