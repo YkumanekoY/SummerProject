@@ -101,6 +101,10 @@ MonoBehaviour:
   inputX: 0
   inputY: 0
   itemList: {fileID: 5385613301576415919}
+<<<<<<< HEAD:Assets/Prefabs/Player/Child.prefab
+=======
+  playerCamera: {fileID: 5385613301653529204}
+>>>>>>> ae7a1ec2b086cf8ea8be39d4464df5a2c6471014:Assets/Photon/PhotonUnityNetworking/Resources/Prefabs/Player/Child.prefab
 --- !u!50 &5385613299851673342
 Rigidbody2D:
   serializedVersion: 4
@@ -558,6 +562,24 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+<<<<<<< HEAD:Assets/Prefabs/Player/Child.prefab
+=======
+    - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 103542120183656185}
+    - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> ae7a1ec2b086cf8ea8be39d4464df5a2c6471014:Assets/Photon/PhotonUnityNetworking/Resources/Prefabs/Player/Child.prefab
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fc35695094c4129b8a1e8c45a3e457, type: 3}
 --- !u!224 &5385613301576415919 stripped
@@ -566,6 +588,21 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 557922455672658152}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:Assets/Prefabs/Player/Child.prefab
+=======
+--- !u!114 &103542120183656185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 491447088941594129, guid: c8fc35695094c4129b8a1e8c45a3e457,
+    type: 3}
+  m_PrefabInstance: {fileID: 557922455672658152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> ae7a1ec2b086cf8ea8be39d4464df5a2c6471014:Assets/Photon/PhotonUnityNetworking/Resources/Prefabs/Player/Child.prefab
 --- !u!1001 &2435909875674447206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,6 +794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147083180418097011, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}

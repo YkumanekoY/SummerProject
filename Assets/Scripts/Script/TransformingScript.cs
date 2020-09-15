@@ -11,12 +11,14 @@ public class TransformingScript : MonoBehaviour
 
     float timeToUsingKidnapping = 8;
 
-    bool isGhostLooking = false;
+    public bool isGhostLooking = false;
 
     KidnappingScript kidnapping;
 
     GameManager gameManager;
     GameObject gameManagerObj;
+
+    EnemyMovingScript enemyMovingScript;
 
 
     // Start is called before the first frame update
@@ -27,6 +29,7 @@ public class TransformingScript : MonoBehaviour
         kidnapping = GetComponent<KidnappingScript>();
         gameManagerObj = GameObject.Find("GameManager");
         gameManager = gameManagerObj.GetComponent<GameManager>();
+        enemyMovingScript = GetComponent<EnemyMovingScript>();
     }
 
     // Update is called once per frame
@@ -54,6 +57,7 @@ public class TransformingScript : MonoBehaviour
         humanLooking.gameObject.SetActive(true);
         ghostLooking.gameObject.SetActive(false);
         isGhostLooking = false;
+        enemyMovingScript.ChangingGhostSpeedMethod();
     }
     IEnumerator TransformingFromHumanToGhost()
     {
@@ -64,6 +68,7 @@ public class TransformingScript : MonoBehaviour
         ghostLooking.gameObject.SetActive(true);
         StartCoroutine("KidappingEnabledMethod");
         isGhostLooking = true;
+        enemyMovingScript.ChangingGhostSpeedMethod();
     }
 
     IEnumerator KidappingEnabledMethod()
