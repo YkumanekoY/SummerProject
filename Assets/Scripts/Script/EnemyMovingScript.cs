@@ -9,10 +9,9 @@ public class EnemyMovingScript : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Vector2 input;
     ItemPoint itemPoint;
-    Transform itemList;
     GameManager gameManager;
     GameObject gameManagerObj;
-    GameObject itemListObj;
+    [SerializeField] GameObject itemListObj;
     float inputX; //x方向のImputの値
     float inputY; //y方向のInputの値
 
@@ -24,7 +23,6 @@ public class EnemyMovingScript : MonoBehaviour
     {
         gameManagerObj = GameObject.Find("GameManager");
         gameManager = gameManagerObj.GetComponent<GameManager>();
-        itemListObj = GameObject.Find("ItemList");//名前違うかもしれん
 
         this.rigidBody = GetComponent<Rigidbody2D>();
         // 衝突時にobjectを回転させない設定
@@ -62,9 +60,10 @@ public class EnemyMovingScript : MonoBehaviour
     {
         if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
         {
-            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
             itemPoint = collider.gameObject.GetComponent<ItemPoint>();
-                
+            if(itemPoint) itemPoint.SearchItem(this.gameObject);
+        }
+        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.B)){
             if(itemListObj.transform.childCount != 0) //リストになんかアイテムがあったら
             {
                 if (itemPoint.isItemPut())
@@ -87,7 +86,7 @@ public class EnemyMovingScript : MonoBehaviour
 
     public void GetItem(GameObject item)
     {
-        Instantiate(item, transform.position, Quaternion.identity, itemList);
+        Instantiate(item, transform.position, Quaternion.identity, itemListObj.transform);
     }
 
 }
