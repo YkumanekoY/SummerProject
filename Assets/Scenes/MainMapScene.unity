@@ -446,6 +446,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1956824130330549742, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385613301036573069, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5385613301576415918, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
       propertyPath: m_Spacing

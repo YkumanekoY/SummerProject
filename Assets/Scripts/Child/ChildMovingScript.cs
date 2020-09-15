@@ -32,7 +32,6 @@ public class ChildMovingScript : MonoBehaviourPunCallbacks
             playerCamera.gameObject.SetActive(true);
 
         }
-
     }
 
     // Update is called once per frame
@@ -47,7 +46,6 @@ public class ChildMovingScript : MonoBehaviourPunCallbacks
                 rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
                 child_pos = transform.position; //プレイヤーの位置を更新
             }
-
         }
     }
 
