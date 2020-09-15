@@ -13,7 +13,7 @@ public class TorchScript : MonoBehaviour
     private Rigidbody rigd;
     private Vector3 Player_pos; //プレイヤーのポジション
     float torchActiveTime = 3;
-    bool torchActive = true; //トーチの使用可能の有無
+    bool istorchActive = true; //トーチの使用可能の有無
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +26,9 @@ public class TorchScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(torchActive == true)
+        if(istorchActive == true)
         {
-          if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 childDirection = Vector3.Distance(EnemyGameObject.transform.position, transform.position);// 敵との距離を把握
         
@@ -55,7 +55,7 @@ public class TorchScript : MonoBehaviour
         GameObject.Find("TorchManager").transform.Find("Torch").gameObject.SetActive(false);
 
         StartCoroutine("torchInterval");
-        torchActive = false;
+        istorchActive = false;
 
     }
 
@@ -65,7 +65,7 @@ public class TorchScript : MonoBehaviour
         yield return new WaitForSeconds(torchIntervalTime);
 
         //再びライトが使えるように
-        torchActive = true;
+        istorchActive = true;
     }
 
 
