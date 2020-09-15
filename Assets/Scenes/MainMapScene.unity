@@ -429,12 +429,37 @@ PrefabInstance:
     - target: {fileID: 5385613301576415919, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -422.33
+      value: -367
       objectReference: {fileID: 0}
     - target: {fileID: 5385613300303277323, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385613301576415918, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_Spacing
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385613301576415918, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385613301576415918, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385613301576415918, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385613301576415918, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: m_ChildControlHeight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b162894c6e58944dcab188b52e402338, type: 3}

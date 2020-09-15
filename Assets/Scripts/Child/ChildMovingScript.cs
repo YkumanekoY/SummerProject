@@ -39,7 +39,7 @@ public class ChildMovingScript : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.B))
+        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
         {
             collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
             itemPoint = collider.gameObject.GetComponent<ItemPoint>();
