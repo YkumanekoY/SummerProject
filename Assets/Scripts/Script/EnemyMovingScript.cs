@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class EnemyMovingScript : MonoBehaviourPunCallbacks
 {
+   
     public readonly float SPEED = 0.1f;
     private Rigidbody2D rigidBody;
     private Vector2 input;
     ItemPoint itemPoint;
+    Transform itemList;
     GameManager gameManager;
     GameObject gameManagerObj;
+<<<<<<< HEAD
     [SerializeField]
     Camera enemyCamera;
     TransformingScript transformingScript;
 	[SerializeField] GameObject itemListObj;
+=======
+    GameObject itemListObj;
+>>>>>>> 31d21da39d677211c7ecabe5ac78b97d4f8ede50
     float inputX; //x方向のImputの値
     float inputY; //y方向のInputの値
 
@@ -24,6 +30,7 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
 
     void Start()
     {
+<<<<<<< HEAD
         if (photonView.IsMine)
         {
             gameManagerObj = GameObject.Find("GameManager");
@@ -38,6 +45,16 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
             enemyCamera.gameObject.SetActive(true);
         }
 
+=======
+        gameManagerObj = GameObject.Find("GameManager");
+        gameManager = gameManagerObj.GetComponent<GameManager>();
+        itemListObj = GameObject.Find("ItemList");//名前違うかもしれん
+
+        this.rigidBody = GetComponent<Rigidbody2D>();
+        // 衝突時にobjectを回転させない設定
+        this.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        currentSpeed = childSpeed;
+>>>>>>> 31d21da39d677211c7ecabe5ac78b97d4f8ede50
     }
 
     private void Update()
@@ -52,6 +69,7 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
                 rigidBody.velocity = new Vector2(inputX * currentSpeed, inputY * currentSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
             }
         }
+       
     }
 
     public void ChangingGhostSpeedMethod()
@@ -72,6 +90,7 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+<<<<<<< HEAD
             if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
             {
                 itemPoint = collider.gameObject.GetComponent<ItemPoint>();
@@ -80,9 +99,16 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
 
             if (!transformingScript.isGhostLooking) return;
             if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.B))
+=======
+            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
+            itemPoint = collider.gameObject.GetComponent<ItemPoint>();
+                
+            if(itemListObj.transform.childCount != 0) //リストになんかアイテムがあったら
+>>>>>>> 31d21da39d677211c7ecabe5ac78b97d4f8ede50
             {
                 if (itemListObj.transform.childCount != 0) //リストになんかアイテムがあったら
                 {
+<<<<<<< HEAD
                     if (itemPoint.isItemPut())
                     {
                         if (itemListObj.transform.GetChild(0).gameObject.tag == "SealedCharm")
@@ -92,6 +118,19 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
 
                         Destroy(itemListObj.transform.GetChild(0).gameObject);
                     }
+=======
+                    if(itemListObj.transform.GetChild(0).gameObject.tag == "SealedCharm")
+                    {
+                        itemPoint.HidingItem("SealedCharm");
+                        Destroy(itemListObj.transform.GetChild(0).gameObject);
+                    }
+                    else if(itemListObj.transform.GetChild(0).gameObject.tag == "RevivalCharm")
+                    {
+                        itemPoint.HidingItem("RevivalCharm");
+                        Destroy(itemListObj.transform.GetChild(0).gameObject);
+                    }
+                    
+>>>>>>> 31d21da39d677211c7ecabe5ac78b97d4f8ede50
                 }
             }
         }
@@ -99,7 +138,7 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
 
     public void GetItem(GameObject item)
     {
-        Instantiate(item, transform.position, Quaternion.identity, itemListObj.transform);
+        Instantiate(item, transform.position, Quaternion.identity, itemList);
     }
 
 }

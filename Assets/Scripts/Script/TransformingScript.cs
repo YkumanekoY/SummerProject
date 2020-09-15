@@ -11,7 +11,7 @@ public class TransformingScript : MonoBehaviour
 
     float timeToUsingKidnapping = 8;
 
-    public bool isGhostLooking = false;
+    bool isGhostLooking = false;
 
     KidnappingScript kidnapping;
 
