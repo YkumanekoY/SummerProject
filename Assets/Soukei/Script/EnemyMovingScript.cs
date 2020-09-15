@@ -18,7 +18,7 @@ public class EnemyMovingScript : MonoBehaviour
     {
         gameManagerObj = GameObject.Find("GameManager");
         gameManager = gameManagerObj.GetComponent<GameManager>();
-        itemListObj = GameObject.Find("PropertyUI");//名前違うかもしれん
+        itemListObj = GameObject.Find("ItemList");//名前違うかもしれん
 
         this.rigidBody = GetComponent<Rigidbody2D>();
         // 衝突時にobjectを回転させない設定

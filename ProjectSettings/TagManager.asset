@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - SealedCharmPoint
   - RevivalCharmPoint
+  - SealedCharm
+  - RevivalCharm
   layers:
   - Default
   - TransparentFX
