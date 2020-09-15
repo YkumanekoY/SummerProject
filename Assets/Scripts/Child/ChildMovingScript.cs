@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class ChildMovingScript : MonoBehaviour
+public class ChildMovingScript : MonoBehaviourPunCallbacks
 {
     private Vector3 child_pos; //プレイヤーのポジション
     public float inputX; //x方向のImputの値
@@ -14,7 +15,7 @@ public class ChildMovingScript : MonoBehaviour
     Transform itemList;
     GameManager gameManager;
     GameObject managerObject;
-    ItemPoint itemPoint;
+    //ItemPoint itemPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -23,17 +24,22 @@ public class ChildMovingScript : MonoBehaviour
         managerObject = GameObject.Find("GameManager");
         gameManager = managerObject.GetComponent<GameManager>();
         rigd = GetComponent<Rigidbody2D>(); //プレイヤーのRigidbodyを取得
+        itemList.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.isPlayerControl)
+        if (photonView.IsMine)
         {
-            inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
-            inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
-            rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
-            child_pos = transform.position; //プレイヤーの位置を更新
+            if (gameManager.isPlayerControl)
+            {
+                inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
+                inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
+                rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
+                child_pos = transform.position; //プレイヤーの位置を更新
+            }
+
         }
     }
 
@@ -42,7 +48,7 @@ public class ChildMovingScript : MonoBehaviour
         if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
         {
             collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
-            itemPoint = collider.gameObject.GetComponent<ItemPoint>();
+            //itemPoint = collider.gameObject.GetComponent<ItemPoint>();
         }
     }
 

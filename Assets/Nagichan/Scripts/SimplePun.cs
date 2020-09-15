@@ -27,25 +27,23 @@ public class SimplePun : MonoBehaviourPunCallbacks
 		PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
 	}
 
-	GameObject monster;
-	GameObject item;
-	GameObject itemGenerator;
-
 	//ルームに入室後に呼び出される
 	public override void OnJoinedRoom()
 	{
-        //GameObject uiManager = PhotonNetwork.Instantiate("UIManager", Vector3.zero, Quaternion.identity, 0);
         GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
-        GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
+        //GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
         GameObject child = PhotonNetwork.Instantiate("Prefabs/Player/Child", Vector3.zero, Quaternion.identity, 0);
         GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
 
+        ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
+        childMovingScript.enabled = true;
 
         //キャラクターを生成
 
         //自分だけが操作できるようにスクリプトを有効にする
         //MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
         //monsterScript.enabled = true;
+
     }
 
 }
