@@ -15,7 +15,6 @@ public class EnemyMovingScript : MonoBehaviour
     GameObject itemListObj;
     float inputX; //x方向のImputの値
     float inputY; //y方向のInputの値
-    private Rigidbody2D rigd;
 
     float currentSpeed;
     public const float childSpeed = 5.0f;// 子供のスピード
@@ -40,7 +39,7 @@ public class EnemyMovingScript : MonoBehaviour
         {
             inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
             inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
-            rigd.velocity = new Vector2(inputX * currentSpeed, inputY * currentSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
+            rigidBody.velocity = new Vector2(inputX * currentSpeed, inputY * currentSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
         }
        
     }
