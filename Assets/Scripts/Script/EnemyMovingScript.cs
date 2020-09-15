@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyMovingScript : MonoBehaviour
 {
-   
     public readonly float SPEED = 0.1f;
     private Rigidbody2D rigidBody;
     private Vector2 input;
     ItemPoint itemPoint;
-    Transform itemList;
     GameManager gameManager;
     GameObject gameManagerObj;
-    GameObject itemListObj;
+	TransformingScript transformingScript;
+	[SerializeField] GameObject itemListObj;
     float inputX; //x方向のImputの値
     float inputY; //y方向のInputの値
 
@@ -24,13 +23,13 @@ public class EnemyMovingScript : MonoBehaviour
     {
         gameManagerObj = GameObject.Find("GameManager");
         gameManager = gameManagerObj.GetComponent<GameManager>();
-        itemListObj = GameObject.Find("ItemList");//名前違うかもしれん
 
         this.rigidBody = GetComponent<Rigidbody2D>();
         // 衝突時にobjectを回転させない設定
         this.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         currentSpeed = childSpeed;
-    }
+		transformingScript = this.GetComponent<TransformingScript>();
+	}
 
     private void Update()
     {
@@ -41,7 +40,6 @@ public class EnemyMovingScript : MonoBehaviour
             inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
             rigidBody.velocity = new Vector2(inputX * currentSpeed, inputY * currentSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
         }
-       
     }
 
     public void ChangingGhostSpeedMethod()
@@ -62,32 +60,30 @@ public class EnemyMovingScript : MonoBehaviour
     {
         if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
         {
-            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
             itemPoint = collider.gameObject.GetComponent<ItemPoint>();
-                
+            if(itemPoint) itemPoint.SearchItem(this.gameObject);
+        }
+
+        if (!transformingScript.isGhostLooking) return;
+		if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.B)){
             if(itemListObj.transform.childCount != 0) //リストになんかアイテムがあったら
             {
                 if (itemPoint.isItemPut())
                 {
                     if(itemListObj.transform.GetChild(0).gameObject.tag == "SealedCharm")
-                    {
                         itemPoint.HidingItem("SealedCharm");
-                        Destroy(itemListObj.transform.GetChild(0).gameObject);
-                    }
                     else if(itemListObj.transform.GetChild(0).gameObject.tag == "RevivalCharm")
-                    {
                         itemPoint.HidingItem("RevivalCharm");
-                        Destroy(itemListObj.transform.GetChild(0).gameObject);
-                    }
-                    
-                }
+
+					Destroy(itemListObj.transform.GetChild(0).gameObject);
+				}
             }
         }
     }
 
     public void GetItem(GameObject item)
     {
-        Instantiate(item, transform.position, Quaternion.identity, itemList);
+        Instantiate(item, transform.position, Quaternion.identity, itemListObj.transform);
     }
 
 }
