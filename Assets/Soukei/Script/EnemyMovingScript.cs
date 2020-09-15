@@ -13,6 +13,13 @@ public class EnemyMovingScript : MonoBehaviour
     GameManager gameManager;
     GameObject gameManagerObj;
     GameObject itemListObj;
+    float inputX; //x方向のImputの値
+    float inputY; //y方向のInputの値
+    private Rigidbody2D rigd;
+
+    float currentSpeed;
+    public const float childSpeed = 5.0f;// 子供のスピード
+    public const float ghostSpeed = 6f;
 
     void Start()
     {
@@ -23,6 +30,7 @@ public class EnemyMovingScript : MonoBehaviour
         this.rigidBody = GetComponent<Rigidbody2D>();
         // 衝突時にobjectを回転させない設定
         this.rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        currentSpeed = childSpeed;
     }
 
     private void Update()
@@ -30,21 +38,25 @@ public class EnemyMovingScript : MonoBehaviour
         // 入力を取得
         if (gameManager.isPlayerControl)
         {
-            input = new Vector2(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical"));
+            inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
+            inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
+            rigd.velocity = new Vector2(inputX * currentSpeed, inputY * currentSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
         }
        
     }
 
-    private void FixedUpdate()
+    public void ChangingGhostSpeedMethod()
     {
-        if (input == Vector2.zero)
+        switch (currentSpeed)
         {
-            return;
+            case childSpeed:
+                currentSpeed = ghostSpeed;
+                break;
+
+            case ghostSpeed:
+                currentSpeed = childSpeed;
+                break;
         }
-        // 既存のポジションに対して、移動量(vector)を加算する
-        rigidBody.position += input * SPEED;
     }
 
     void OnTriggerStay2D(Collider2D collider)

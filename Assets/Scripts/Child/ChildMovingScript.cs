@@ -19,7 +19,6 @@ public class ChildMovingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        child_pos = GetComponent<Transform>().position; //最初の時点でのプレイヤーのポジションを取得
         managerObject = GameObject.Find("GameManager");
         gameManager = managerObject.GetComponent<GameManager>();
         rigd = GetComponent<Rigidbody2D>(); //プレイヤーのRigidbodyを取得
@@ -33,7 +32,6 @@ public class ChildMovingScript : MonoBehaviour
             inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
             inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
             rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
-            child_pos = transform.position; //プレイヤーの位置を更新
         }
     }
 
