@@ -21,24 +21,29 @@ public class KidnappingScript : MonoBehaviour
     float lightActiveTime = 4;
     StoppingGhostScript stoppingGhostScript;
     TorchScript torchScript;
-    
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Awake()
     {
         jail = GameObject.FindGameObjectWithTag("RevivalCharmPoint");
-        playersObject = GameObject.FindGameObjectsWithTag("Child");
-        for (int i = 0; i < playersObject.Length; i++)
-        {
-            torchScript = playersObject[i].GetComponent<TorchScript>();
-            torchScript.childGameObjectNumber = i;
-        }
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        
+       
     }
 
     private void Start()
     {
-        isInterruptedArray = new bool[playersObject.Length];
+		playersObject = gameManager.childrenObjects;
+		isInterruptedArray = new bool[playersObject.Length];
         stoppingGhostScript = GetComponent<StoppingGhostScript>();
+
+        for (int i = 0; i < playersObject.Length; i++)
+        {
+            torchScript = playersObject[i].transform.Find("TorchManager").gameObject.GetComponent<TorchScript>();
+            torchScript.childGameObjectNumber = i;
+        }
 
         for (int i = 0; i < playersObject.Length; i++)
         {
@@ -89,6 +94,7 @@ public class KidnappingScript : MonoBehaviour
                         yield return new WaitForSeconds(kidnappingInterval);
                         playersObject[i].transform.parent = null;
                         playersObject[i].transform.position = jail.transform.position;
+                        gameManager.JudgingKidnappedChild(i);
                     }
                 }
             }

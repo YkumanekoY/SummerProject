@@ -49,7 +49,7 @@ public class EnemyMovingScript : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
         {
             collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
             itemPoint = collider.gameObject.GetComponent<ItemPoint>();

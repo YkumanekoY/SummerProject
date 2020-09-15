@@ -90,8 +90,8 @@ public class StageManager : MonoBehaviour
 	// 檻を閉じる
 	IEnumerator CloseJailCell()
 	{
-		yield return new WaitForSeconds(5f);
-		revivalPoint.transform.GetChild(1).gameObject.SetActive(true);
-		revivalPoint.transform.GetChild(0).gameObject.SetActive(false);
+		yield return new WaitForSeconds(10f);
+		revivalPoint.transform.GetChild(1).gameObject.SetActive(false);
+		revivalPoint.transform.GetChild(0).gameObject.SetActive(true);
 	}
 }
