@@ -5,12 +5,17 @@ using Photon.Realtime;
 
 public class SimplePun : MonoBehaviourPunCallbacks
 {
+<<<<<<< HEAD
     int oniNumber;
+=======
+
+>>>>>>> e01adc3489716273626b06bca955a072d2921718
 	// Use this for initialization
 	void Start()
 	{
 		//旧バージョンでは引数必須でしたが、PUN2では不要です。
 		PhotonNetwork.ConnectUsingSettings();
+<<<<<<< HEAD
         oniNumber = 1;
         //oniNumber = Random.Range(1, 4);
         Debug.Log(oniNumber);
@@ -18,11 +23,20 @@ public class SimplePun : MonoBehaviourPunCallbacks
     }
 
     void OnGUI()
+=======
+	}
+
+	void OnGUI()
+>>>>>>> e01adc3489716273626b06bca955a072d2921718
 	{
 		//ログインの状態を画面上に出力
 		GUILayout.Label(PhotonNetwork.NetworkClientState.ToString());
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e01adc3489716273626b06bca955a072d2921718
 	//ルームに入室前に呼び出される
 	public override void OnConnectedToMaster()
 	{
@@ -33,6 +47,7 @@ public class SimplePun : MonoBehaviourPunCallbacks
 	//ルームに入室後に呼び出される
 	public override void OnJoinedRoom()
 	{
+<<<<<<< HEAD
         if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
         {
             GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
@@ -48,6 +63,22 @@ public class SimplePun : MonoBehaviourPunCallbacks
         GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
         GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
 
+=======
+        GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
+        //GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
+        GameObject child = PhotonNetwork.Instantiate("Prefabs/Player/Child", Vector3.zero, Quaternion.identity, 0);
+        GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
+
+        ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
+        childMovingScript.enabled = true;
+
+        //キャラクターを生成
+
+        //自分だけが操作できるようにスクリプトを有効にする
+        //MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
+        //monsterScript.enabled = true;
+
+>>>>>>> e01adc3489716273626b06bca955a072d2921718
     }
 
 }
