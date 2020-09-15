@@ -5,14 +5,17 @@ using Photon.Realtime;
 
 public class SimplePun : MonoBehaviourPunCallbacks
 {
-    int a;
+    int oniNumber;
 	// Use this for initialization
 	void Start()
 	{
 		//旧バージョンでは引数必須でしたが、PUN2では不要です。
 		PhotonNetwork.ConnectUsingSettings();
         //a = PhotonPlayer.UserID;
+        //oniNumber = Random.Range(1,4);
+        oniNumber = Random.Range(1, 4);
 
+        Debug.Log(oniNumber);
 
     }
 
@@ -33,17 +36,18 @@ public class SimplePun : MonoBehaviourPunCallbacks
 	//ルームに入室後に呼び出される
 	public override void OnJoinedRoom()
 	{
-        //if(number == 3)
-        //{
-        //    GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
-
-        //}
-        //else
-        //{
+        if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
+        {
+            GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
+            EnemyMovingScript enemyMovingScript = ghost.GetComponent<EnemyMovingScript>();
+            enemyMovingScript.enabled = true;
+        }
+        else
+        {
             GameObject child = PhotonNetwork.Instantiate("Prefabs/Player/Child", Vector3.zero, Quaternion.identity, 0);
             ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
             childMovingScript.enabled = true;
-        //}
+        }
         GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
         GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
 

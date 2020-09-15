@@ -356,11 +356,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3659514648271211948, guid: b162894c6e58944dcab188b52e402338,
-        type: 3}
-      propertyPath: viewIdField
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5385613299851673314, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
       propertyPath: m_Name
@@ -370,6 +365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659514648271211948, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: viewIdField
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5385613299851673343, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
@@ -511,6 +511,11 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2518735102753152914, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b162894c6e58944dcab188b52e402338, type: 3}
 --- !u!1001 &383365426
@@ -520,11 +525,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5897423246431354230, guid: 49ee81d0971cf48989339a3edbbec0e8,
-        type: 3}
-      propertyPath: viewIdField
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3527172874021133455, guid: 49ee81d0971cf48989339a3edbbec0e8,
         type: 3}
       propertyPath: m_Name
@@ -534,6 +534,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5897423246431354230, guid: 49ee81d0971cf48989339a3edbbec0e8,
+        type: 3}
+      propertyPath: viewIdField
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3527172874021133453, guid: 49ee81d0971cf48989339a3edbbec0e8,
         type: 3}
@@ -2200,6 +2205,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 855555020355141992, guid: bdf576e7a00804a2da203954fd1797c7,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 258877921777675827, guid: bdf576e7a00804a2da203954fd1797c7,
         type: 3}
       propertyPath: viewIdField
       value: 1

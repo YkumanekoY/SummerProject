@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputX: 0
   inputY: 0
-  itemList: {fileID: 557922455672658525}
+  itemList: {fileID: 5385613301576415919}
   playerCamera: {fileID: 5385613301653529204}
 --- !u!50 &5385613299851673342
 Rigidbody2D:
@@ -219,7 +219,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 557922455672658525}
+  - {fileID: 5385613301576415919}
   m_Father: {fileID: 5385613299851673343}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -489,16 +489,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5385613300303277323}
     m_Modifications:
-    - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
-        type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
-        type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 557922455672658440}
     - target: {fileID: 5549465288468177476, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_Name
@@ -614,6 +604,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 103542120183656185}
     - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_Enabled
@@ -621,13 +621,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fc35695094c4129b8a1e8c45a3e457, type: 3}
---- !u!224 &557922455672658525 stripped
+--- !u!224 &5385613301576415919 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5549465288468177479, guid: c8fc35695094c4129b8a1e8c45a3e457,
     type: 3}
   m_PrefabInstance: {fileID: 557922455672658152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &557922455672658440 stripped
+--- !u!114 &103542120183656185 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 491447088941594129, guid: c8fc35695094c4129b8a1e8c45a3e457,
     type: 3}
@@ -831,6 +831,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5147083180418097011, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}
       propertyPath: m_Range
@@ -845,11 +850,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_InnerSpotAngle
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5147083180418097011, guid: 0272187a0579443a285a1ed2a80d9216,
-        type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0272187a0579443a285a1ed2a80d9216, type: 3}
