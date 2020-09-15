@@ -5,15 +5,18 @@ using Photon.Realtime;
 
 public class SimplePun : MonoBehaviourPunCallbacks
 {
-
+    int a;
 	// Use this for initialization
 	void Start()
 	{
 		//旧バージョンでは引数必須でしたが、PUN2では不要です。
 		PhotonNetwork.ConnectUsingSettings();
-	}
+        //a = PhotonPlayer.UserID;
 
-	void OnGUI()
+
+    }
+
+    void OnGUI()
 	{
 		//ログインの状態を画面上に出力
 		GUILayout.Label(PhotonNetwork.NetworkClientState.ToString());

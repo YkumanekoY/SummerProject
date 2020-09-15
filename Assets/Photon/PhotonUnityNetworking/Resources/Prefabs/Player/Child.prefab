@@ -103,6 +103,7 @@ MonoBehaviour:
   inputX: 0
   inputY: 0
   itemList: {fileID: 557922455672658500}
+  playerCamera: {fileID: 5385613301653529204}
 --- !u!50 &5385613299851673342
 Rigidbody2D:
   serializedVersion: 4
