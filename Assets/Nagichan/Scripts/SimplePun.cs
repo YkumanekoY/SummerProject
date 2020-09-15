@@ -11,10 +11,8 @@ public class SimplePun : MonoBehaviourPunCallbacks
 	{
 		//旧バージョンでは引数必須でしたが、PUN2では不要です。
 		PhotonNetwork.ConnectUsingSettings();
-        //a = PhotonPlayer.UserID;
-        //oniNumber = Random.Range(1,4);
-        oniNumber = Random.Range(1, 4);
-
+        oniNumber = 1;
+        //oniNumber = Random.Range(1, 4);
         Debug.Log(oniNumber);
 
     }
@@ -24,7 +22,6 @@ public class SimplePun : MonoBehaviourPunCallbacks
 		//ログインの状態を画面上に出力
 		GUILayout.Label(PhotonNetwork.NetworkClientState.ToString());
 	}
-
 
 	//ルームに入室前に呼び出される
 	public override void OnConnectedToMaster()
@@ -50,14 +47,6 @@ public class SimplePun : MonoBehaviourPunCallbacks
         }
         GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
         GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
-
-
-
-        //キャラクターを生成
-
-        //自分だけが操作できるようにスクリプトを有効にする
-        //MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
-        //monsterScript.enabled = true;
 
     }
 
