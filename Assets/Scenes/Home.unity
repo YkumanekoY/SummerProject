@@ -439,6 +439,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007553864}
   m_CullTransparentMesh: 0
+--- !u!1 &1818476062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1818476063}
+  - component: {fileID: 1818476064}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1818476063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818476062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.783222, y: -0.476819, z: -0.18736975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1818476064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818476062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d252daebe5447cc82a15f9f832716e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1846023788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -446,11 +489,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2131706067}
     m_Modifications:
-    - target: {fileID: 4916009807028268969, guid: b5a83cc6185314a94893da8195cfd357,
-        type: 3}
-      propertyPath: m_Name
-      value: Button
-      objectReference: {fileID: 0}
     - target: {fileID: 4916009807028268968, guid: b5a83cc6185314a94893da8195cfd357,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -556,10 +594,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4916009807028268969, guid: b5a83cc6185314a94893da8195cfd357,
+        type: 3}
+      propertyPath: m_Name
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 4916009808376310833, guid: b5a83cc6185314a94893da8195cfd357,
         type: 3}
       propertyPath: m_Text
       value: "\u30DE\u30C3\u30C1\u30F3\u30B0\u958B\u59CB"
+      objectReference: {fileID: 0}
+    - target: {fileID: -6264333464683729847, guid: b5a83cc6185314a94893da8195cfd357,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5a83cc6185314a94893da8195cfd357, type: 3}
