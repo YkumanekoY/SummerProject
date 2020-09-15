@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
   m_Children:
   - {fileID: 5385613301653529207}
-  - {fileID: 8286159157887526130}
+  - {fileID: 1011946688595190892}
   - {fileID: 5385613300994340472}
   - {fileID: 5385613300303277323}
   m_Father: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputX: 0
   inputY: 0
-  itemList: {fileID: 557922455672658500}
+  itemList: {fileID: 557922455672658525}
   playerCamera: {fileID: 5385613301653529204}
 --- !u!50 &5385613299851673342
 Rigidbody2D:
@@ -219,7 +219,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 557922455672658500}
+  - {fileID: 557922455672658525}
   m_Father: {fileID: 5385613299851673343}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -498,7 +498,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ObservedComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 557922455672658494}
+      objectReference: {fileID: 557922455672658440}
     - target: {fileID: 5549465288468177476, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_Name
@@ -621,13 +621,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fc35695094c4129b8a1e8c45a3e457, type: 3}
---- !u!224 &557922455672658500 stripped
+--- !u!224 &557922455672658525 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5549465288468177479, guid: c8fc35695094c4129b8a1e8c45a3e457,
     type: 3}
   m_PrefabInstance: {fileID: 557922455672658152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &557922455672658494 stripped
+--- !u!114 &557922455672658440 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 491447088941594129, guid: c8fc35695094c4129b8a1e8c45a3e457,
     type: 3}
@@ -853,7 +853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0272187a0579443a285a1ed2a80d9216, type: 3}
---- !u!4 &8286159157887526130 stripped
+--- !u!4 &1011946688595190892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9004228361427681586, guid: 0272187a0579443a285a1ed2a80d9216,
     type: 3}

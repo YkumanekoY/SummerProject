@@ -491,12 +491,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3859661004389038637, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 557922455672658522, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
       propertyPath: viewIdField
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8286159157887526816, guid: b162894c6e58944dcab188b52e402338,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 557922455672658516, guid: b162894c6e58944dcab188b52e402338,
         type: 3}
       propertyPath: viewIdField
       value: 6
