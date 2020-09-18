@@ -45,7 +45,7 @@ public class SimplePun : MonoBehaviourPunCallbacks
             ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
             childMovingScript.enabled = true;
         }
-        GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
+        //GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
         GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
 
     }
