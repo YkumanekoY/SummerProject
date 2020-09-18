@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class ChildMovingScript : MonoBehaviour
+public class ChildMovingScript : MonoBehaviourPunCallbacks
 {
     private Vector3 child_pos; //プレイヤーのポジション
     public float inputX; //x方向のImputの値
@@ -12,37 +13,51 @@ public class ChildMovingScript : MonoBehaviour
     bool escape = true;
     [SerializeField]
     Transform itemList;
+    [SerializeField]
+    Camera playerCamera;
     GameManager gameManager;
     GameObject managerObject;
-    ItemPoint itemPoint;
+    //ItemPoint itemPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        child_pos = GetComponent<Transform>().position; //最初の時点でのプレイヤーのポジションを取得
-        managerObject = GameObject.Find("GameManager");
-        gameManager = managerObject.GetComponent<GameManager>();
-        rigd = GetComponent<Rigidbody2D>(); //プレイヤーのRigidbodyを取得
+        if (photonView.IsMine)
+        {
+            child_pos = GetComponent<Transform>().position; //最初の時点でのプレイヤーのポジションを取得
+            managerObject = GameObject.Find("GameManager");
+            gameManager = managerObject.GetComponent<GameManager>();
+            rigd = GetComponent<Rigidbody2D>(); //プレイヤーのRigidbodyを取得
+            itemList.gameObject.SetActive(true);
+            playerCamera.gameObject.SetActive(true);
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.isPlayerControl)
+        if (photonView.IsMine)
         {
-            inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
-            inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
-            rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
-            child_pos = transform.position; //プレイヤーの位置を更新
+            if (gameManager.isPlayerControl)
+            {
+                inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
+                inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
+                rigd.velocity = new Vector2(inputX * childSpeed, inputY * childSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
+                child_pos = transform.position; //プレイヤーの位置を更新
+            }
         }
     }
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
+        if (photonView.IsMine)
         {
-            collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
-            itemPoint = collider.gameObject.GetComponent<ItemPoint>();
+            if (collider.gameObject.tag == "Item" && Input.GetKeyDown(KeyCode.Return))
+            {
+                collider.gameObject.GetComponent<ItemPoint>().SearchItem(this.gameObject);
+                //itemPoint = collider.gameObject.GetComponent<ItemPoint>();
+            }
         }
     }
 
@@ -54,20 +69,23 @@ public class ChildMovingScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(itemList.childCount == 0) return;
-		if (other.gameObject.CompareTag("SealedCharmPoint"))
-		{
-            if(!itemList.Find("SealedCharm(Clone)")) return;
-			gameManager.IncreaseSealedCharm();
-			Destroy(itemList.Find("SealedCharm(Clone)").gameObject);
-		}
+        if (photonView.IsMine)
+        {
 
-        if (other.gameObject.CompareTag("RevivalCharmPoint"))
-		{
-            if(!itemList.Find("RevivalCharm(Clone)")) return;
-			gameManager.IncreaseRevivalCharm();
-			Destroy(itemList.Find("RevivalCharm(Clone)").gameObject);
-		}
+            if (itemList.childCount == 0) return;
+            if (other.gameObject.CompareTag("SealedCharmPoint"))
+            {
+                if (!itemList.Find("SealedCharm(Clone)")) return;
+                gameManager.IncreaseSealedCharm();
+                Destroy(itemList.Find("SealedCharm(Clone)").gameObject);
+            }
+
+            if (other.gameObject.CompareTag("RevivalCharmPoint"))
+            {
+                if (!itemList.Find("RevivalCharm(Clone)")) return;
+                gameManager.IncreaseRevivalCharm();
+                Destroy(itemList.Find("RevivalCharm(Clone)").gameObject);
+            }
+        }
 	}
 }
-

@@ -19,7 +19,7 @@ public class TorchScript : MonoBehaviour
     void Start()
     {
         EnemyGameObject = GameObject.Find("Ghost");
-        kidnappingScript = gameObject.GetComponent<KidnappingScript>();
+        kidnappingScript = EnemyGameObject.GetComponent<KidnappingScript>();
         rigd = GetComponent<Rigidbody>(); //トーチのRigidbodyを取得
     }
 
