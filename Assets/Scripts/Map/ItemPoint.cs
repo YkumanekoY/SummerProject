@@ -14,25 +14,18 @@ public class ItemPoint : MonoBehaviour
 		itemPrefabManager = GameObject.Find("GameManager").GetComponent<ItemPrefabManager>();
 	}
 
-	public void SearchItem(GameObject player)
+	public void SearchItem(GameObject Player)
 	{
-
 		if (isSealedCharmContain)
 		{
 			isSealedCharmContain = false;
-			if(player.GetComponent<ChildMovingScript>())
-				player.GetComponent<ChildMovingScript>().GetItem(itemPrefabManager.itemPrefabs[0]);
-			else
-				player.GetComponent<EnemyMovingScript>().GetItem(itemPrefabManager.itemPrefabs[0]);
+			Player.GetComponent<ChildMovingScript>().GetItem(itemPrefabManager.itemPrefabs[0]);
 			Debug.Log("封印のお札だ");
 		}
 		else if (isRevivalCharmContain)
 		{
 			isRevivalCharmContain = false;
-			if(player.GetComponent<ChildMovingScript>())
-				player.GetComponent<ChildMovingScript>().GetItem(itemPrefabManager.itemPrefabs[1]);
-			else
-				player.GetComponent<EnemyMovingScript>().GetItem(itemPrefabManager.itemPrefabs[1]);
+			Player.GetComponent<ChildMovingScript>().GetItem(itemPrefabManager.itemPrefabs[1]);
 			Debug.Log("復活のお札だ");
 		}
 		else
