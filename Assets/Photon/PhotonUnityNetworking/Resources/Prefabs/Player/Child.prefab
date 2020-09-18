@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5385613299851673341}
   - component: {fileID: 5385613299851673342}
   - component: {fileID: 5385613299851673337}
+  - component: {fileID: 339646767151650239}
+  - component: {fileID: 7059897688994700843}
   m_Layer: 0
   m_Name: Child
   m_TagString: Child
@@ -149,6 +151,44 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.81, y: 3.89}
   m_EdgeRadius: 0
+--- !u!114 &339646767151650239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385613299851673314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 7059897688994700843}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7059897688994700843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385613299851673314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &5385613300303277327
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +494,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemList
       objectReference: {fileID: 0}
+    - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5549465288468177479, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -568,11 +613,6 @@ PrefabInstance:
         type: 3}
       propertyPath: ObservedComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 103542120183656185}
-    - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fc35695094c4129b8a1e8c45a3e457, type: 3}
@@ -582,18 +622,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 557922455672658152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &103542120183656185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 491447088941594129, guid: c8fc35695094c4129b8a1e8c45a3e457,
-    type: 3}
-  m_PrefabInstance: {fileID: 557922455672658152}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2435909875674447206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -786,11 +814,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5147083180418097011, guid: 0272187a0579443a285a1ed2a80d9216,
-        type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}
       propertyPath: m_Range
@@ -805,6 +828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_InnerSpotAngle
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147083180418097011, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0272187a0579443a285a1ed2a80d9216, type: 3}
