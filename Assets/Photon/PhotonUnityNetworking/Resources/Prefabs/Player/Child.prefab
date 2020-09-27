@@ -739,11 +739,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5385613299851673343}
     m_Modifications:
-    - target: {fileID: 7626372044787005616, guid: 0272187a0579443a285a1ed2a80d9216,
-        type: 3}
-      propertyPath: m_Name
-      value: Spot Light
-      objectReference: {fileID: 0}
     - target: {fileID: 9004228361427681586, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -813,6 +808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626372044787005616, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: m_Name
+      value: Spot Light
       objectReference: {fileID: 0}
     - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}

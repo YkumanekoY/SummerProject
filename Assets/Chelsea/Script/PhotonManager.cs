@@ -219,6 +219,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     IEnumerator ChangeToMatch()
     {
         //3秒停止
+        PhotonNetwork.IsMessageQueueRunning = false;
         yield return new WaitForSeconds(3);
 
         SceneManager.LoadScene("Matching");
