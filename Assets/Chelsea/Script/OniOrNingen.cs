@@ -16,6 +16,7 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.IsMessageQueueRunning = true;
+        SceneManager.sceneLoaded += OnLoadedScene;
 
         if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
         {
@@ -31,7 +32,31 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
         }
         StartCoroutine("ChangeToGame");
     }
-
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    private void OnLoadedScene(Scene i_scene, LoadSceneMode i_mode)
+    {
+        // シーンの遷移が完了したら自分用のオブジェクトを生成.
+        if (i_scene.name == "MainMapScene")
+        {
+            //Vector3 pos = Random.insideUnitCircle * m_randomCircle;
+            if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
+            {
+                GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
+                EnemyMovingScript enemyMovingScript = ghost.GetComponent<EnemyMovingScript>();
+                enemyMovingScript.enabled = true;
+            }
+            else
+            {
+                GameObject child = PhotonNetwork.Instantiate("Prefabs/Player/Child", Vector3.zero, Quaternion.identity, 0);
+                ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
+                childMovingScript.enabled = true;
+            }
+        }
+    }
     IEnumerator ChangeToGame()
     {
         //3秒停止
@@ -39,10 +64,5 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(3);
 
         SceneManager.LoadScene("MainMapScene");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
