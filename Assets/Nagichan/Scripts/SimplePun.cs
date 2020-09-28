@@ -33,20 +33,20 @@ public class SimplePun : MonoBehaviourPunCallbacks
 	//ルームに入室後に呼び出される
 	public override void OnJoinedRoom()
 	{
-        if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
-        {
-            GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
-            EnemyMovingScript enemyMovingScript = ghost.GetComponent<EnemyMovingScript>();
-            enemyMovingScript.enabled = true;
-        }
-        else
-        {
-            GameObject child = PhotonNetwork.Instantiate("Prefabs/Player/Child", Vector3.zero, Quaternion.identity, 0);
-            ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
-            childMovingScript.enabled = true;
-        }
-        //GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
-        //GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
+        //if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
+        //{
+        //    GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
+        //    EnemyMovingScript enemyMovingScript = ghost.GetComponent<EnemyMovingScript>();
+        //    enemyMovingScript.enabled = true;
+        //}
+        //else
+        //{
+        //    GameObject child = PhotonNetwork.Instantiate("Prefabs/Player/Child", Vector3.zero, Quaternion.identity, 0);
+        //    ChildMovingScript childMovingScript = child.GetComponent<ChildMovingScript>();
+        //    childMovingScript.enabled = true;
+        //}
+        ////GameObject gameManager = PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity, 0);
+        ////GameObject yashiro = PhotonNetwork.Instantiate("Prefabs/Map/yashiro/yashiro", Vector3.zero, Quaternion.identity, 0);
     }
 
 }

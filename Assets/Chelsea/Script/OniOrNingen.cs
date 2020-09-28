@@ -15,7 +15,8 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
-        PhotonNetwork.IsMessageQueueRunning = true;
+        //PhotonNetwork.IsMessageQueueRunning = true;
+        // シーンの読み込みコールバックを登録.
         SceneManager.sceneLoaded += OnLoadedScene;
 
         if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
@@ -37,8 +38,18 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
     {
         
     }
+    IEnumerator ChangeToGame()
+    {
+        //3秒停止
+        PhotonNetwork.IsMessageQueueRunning = false;
+        yield return new WaitForSeconds(3);
+
+        SceneManager.LoadScene("MainMapScene");
+    }
     private void OnLoadedScene(Scene i_scene, LoadSceneMode i_mode)
     {
+        PhotonNetwork.IsMessageQueueRunning = true;
+
         // シーンの遷移が完了したら自分用のオブジェクトを生成.
         if (i_scene.name == "MainMapScene")
         {
@@ -56,13 +67,5 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
                 childMovingScript.enabled = true;
             }
         }
-    }
-    IEnumerator ChangeToGame()
-    {
-        //3秒停止
-        PhotonNetwork.IsMessageQueueRunning = false;
-        yield return new WaitForSeconds(3);
-
-        SceneManager.LoadScene("MainMapScene");
     }
 }
