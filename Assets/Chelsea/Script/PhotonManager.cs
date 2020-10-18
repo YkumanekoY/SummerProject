@@ -9,12 +9,15 @@ using UnityEngine.UI;
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     //public GameObject score_object = null; // Textオブジェクト
-
+    public GameObject roomCreatePanel;
+    public GameObject ToOnline;
+    public InputField roomName;
     string mode;                 // モード(ONLINE, OFFLINE)
     string dispStatus;           // 画面項目：状態
     string dispMessage;          // 画面項目：メッセージ
     string dispRoomName;         // 画面項目：ルーム名
     List<RoomInfo> roomDispList; // 画面項目：ルーム一覧
+
     //private float step_time;
     //int ActorNumber;
 
@@ -46,6 +49,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         initParam();
+        roomCreatePanel.SetActive(false);
     }
 
 
@@ -82,6 +86,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
         // 変数初期化
         initParam();
+        roomCreatePanel.SetActive(false);
+        ToOnline.SetActive(true);
     }
 
     // コールバック：Photonサーバ接続完了
@@ -231,11 +237,25 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //score_text.text = PhotonNetwork.LocalPlayer.ActorNumber.ToString();
     }
 
+    //オンライン化する
     public void GameToMatch()
     {
         ConnectPhoton(false);
+        
+        if (Status.OFFLINE.ToString().Equals(dispStatus))
+        {
+            Debug.Log("オンライン");
+            roomCreatePanel.SetActive(true);
+            ToOnline.SetActive(false);
+        }
     }
 
+    public void RoomCreate()
+    {
+        CreateRoom(roomName.text);
+    }
+
+   
 
     // ---------- 設定GUI ----------
     void OnGUI()
@@ -260,12 +280,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         GUILayout.BeginHorizontal();
         GUILayout.Label("状態: " + dispStatus, GUILayout.Width(200));
         GUILayout.FlexibleSpace();
-        if (Status.ONLINE.ToString().Equals(dispStatus))
-        {
-            // サーバ接続時のみ表示
-            if (GUILayout.Button("切断"))
-                DisConnectPhoton();
-        }
+        //if (Status.ONLINE.ToString().Equals(dispStatus))
+        //{
+        //    // サーバ接続時のみ表示
+        //    if (GUILayout.Button("切断"))
+        //        DisConnectPhoton();
+        //}
         GUILayout.EndHorizontal();
         GUILayout.Label(dispMessage);
         GUILayout.Space(20);
