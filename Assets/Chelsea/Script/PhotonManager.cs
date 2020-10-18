@@ -211,8 +211,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
         Debug.Log("OnPlayerEnteredRoom");
         Debug.Log(newPlayer.ActorNumber);
-
-
     }
 
 
@@ -233,6 +231,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //score_text.text = PhotonNetwork.LocalPlayer.ActorNumber.ToString();
     }
 
+    public void GameToMatch()
+    {
+        ConnectPhoton(false);
+    }
+
+
     // ---------- 設定GUI ----------
     void OnGUI()
     {
@@ -242,8 +246,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             Quaternion.identity,
             new Vector3(scale, scale, 1.0f));
 
-        GUI.Window(0, new Rect(-200, -200, 400, 400),
-            NetworkSettingWindow, "Photon接続テスト");
+        GUI.Window(0, new Rect(-200, 0, 400, 200),//真ん中から横、縦、大きさ、大きさ
+            NetworkSettingWindow, "");
     }
 
     Vector2 scrollPosition;
@@ -254,7 +258,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         // ステータス, メッセージの表示
         GUILayout.BeginHorizontal();
-        GUILayout.Label("状態: " + dispStatus, GUILayout.Width(100));
+        GUILayout.Label("状態: " + dispStatus, GUILayout.Width(200));
         GUILayout.FlexibleSpace();
         if (Status.ONLINE.ToString().Equals(dispStatus))
         {
