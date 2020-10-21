@@ -58,6 +58,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         initParam();
         roomCreatePanel.SetActive(false);
         inRoomPanel.SetActive(false);
+        info.Clear();
     }
 
 
@@ -298,6 +299,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomCreatePanel.SetActive(true);
         inRoom = false;
         message.text = "ルームを作成or参加して\nゲームを開始";
+        info.Clear();
 
     }
 
