@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class TransformingScript : MonoBehaviour
+public class TransformingScript : MonoBehaviourPunCallbacks
 {
     GameObject humanLooking;
     GameObject ghostLooking;
