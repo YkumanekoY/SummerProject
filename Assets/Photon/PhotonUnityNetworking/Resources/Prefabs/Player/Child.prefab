@@ -489,15 +489,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5385613300303277323}
     m_Modifications:
-    - target: {fileID: 5549465288468177476, guid: c8fc35695094c4129b8a1e8c45a3e457,
-        type: 3}
-      propertyPath: m_Name
-      value: ItemList
-      objectReference: {fileID: 0}
     - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549465288468177476, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemList
       objectReference: {fileID: 0}
     - target: {fileID: 5549465288468177479, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
@@ -739,6 +739,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5385613299851673343}
     m_Modifications:
+    - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: m_Range
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: m_SpotAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
+        type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7626372044787005616, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}
       propertyPath: m_Name
@@ -813,21 +828,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
-        type: 3}
-      propertyPath: m_Range
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
-        type: 3}
-      propertyPath: m_SpotAngle
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2661530353097122260, guid: 0272187a0579443a285a1ed2a80d9216,
-        type: 3}
-      propertyPath: m_InnerSpotAngle
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5147083180418097011, guid: 0272187a0579443a285a1ed2a80d9216,
         type: 3}
