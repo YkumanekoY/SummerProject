@@ -42,8 +42,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         // 入室可
         IsOpen = true
-
-
     };
 
     // 状態
