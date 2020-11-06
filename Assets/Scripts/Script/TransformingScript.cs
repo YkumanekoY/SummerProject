@@ -25,26 +25,32 @@ public class TransformingScript : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        humanLooking = transform.GetChild(0).gameObject;
-        ghostLooking = transform.GetChild(1).gameObject;
-        kidnapping = GetComponent<KidnappingScript>();
-        gameManagerObj = GameObject.Find("GameManager");
-        gameManager = gameManagerObj.GetComponent<GameManager>();
-        enemyMovingScript = GetComponent<EnemyMovingScript>();
+        if (photonView.IsMine)
+        {
+            humanLooking = transform.GetChild(0).gameObject;
+            ghostLooking = transform.GetChild(1).gameObject;
+            kidnapping = GetComponent<KidnappingScript>();
+            gameManagerObj = GameObject.Find("GameManager");
+            gameManager = gameManagerObj.GetComponent<GameManager>();
+            enemyMovingScript = GetComponent<EnemyMovingScript>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V) && gameManager.isPlayerControl)
+        if (photonView.IsMine)
         {
-            if (isGhostLooking)
+            if (Input.GetKeyDown(KeyCode.V) && gameManager.isPlayerControl)
             {
-                StartCoroutine("TransformingFromGhostToHuman");
-            }
-            else
-            {
-                StartCoroutine("TransformingFromHumanToGhost");
+                if (isGhostLooking)
+                {
+                    StartCoroutine("TransformingFromGhostToHuman");
+                }
+                else
+                {
+                    StartCoroutine("TransformingFromHumanToGhost");
+                }
             }
         }
     }

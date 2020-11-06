@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class TorchScript : MonoBehaviour
+public class TorchScript : MonoBehaviourPunCallbacks
 {
     public int childGameObjectNumber = 0;//子供の配列番号を格納する変数
     float childDirection;//子供たちからの角度をいれる変数
