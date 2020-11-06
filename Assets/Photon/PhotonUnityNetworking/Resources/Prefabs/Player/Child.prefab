@@ -494,11 +494,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemList
       objectReference: {fileID: 0}
-    - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5549465288468177479, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -603,6 +598,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549465288468177473, guid: c8fc35695094c4129b8a1e8c45a3e457,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6536275847354153094, guid: c8fc35695094c4129b8a1e8c45a3e457,
         type: 3}
