@@ -58,6 +58,7 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
             //Vector3 pos = Random.insideUnitCircle * m_randomCircle;
             if (PhotonNetwork.LocalPlayer.ActorNumber == oniNumber)
             {
+                GameObject stagemanager = PhotonNetwork.Instantiate("Prefabs/StageManager", Vector3.zero, Quaternion.identity, 0);
                 GameObject ghost = PhotonNetwork.Instantiate("Prefabs/Player/Ghost", Vector3.zero, Quaternion.identity, 0);
                 EnemyMovingScript enemyMovingScript = ghost.GetComponent<EnemyMovingScript>();
                 enemyMovingScript.enabled = true;

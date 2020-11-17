@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5123368903094309309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5123368903094309283}
+  - component: {fileID: 5123368903094309282}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5123368903094309283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123368903094309309}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5123368903094309282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123368903094309309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a166456bee6574082aaa57051164b8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingBase: {fileID: 7002117099255464522, guid: 17f63265cf05f49a4a12917eb69b86c6,
+    type: 3}
+  buildings:
+  - type: 0
+    roofs:
+    - {fileID: 7909707320689275084, guid: 58e47553973cd4657bdd7601140bb07c, type: 3}
+    walls:
+    - {fileID: 152335918185287978, guid: f47db8cc3da8e48189d623661a33b2ed, type: 3}
+    insideObjects:
+    - {fileID: 6202855035654539679, guid: 2053f4830eb1b4ffbb50592327e4ec90, type: 3}
+    - {fileID: 6202855035654539679, guid: 8ba4864a6c8594e03bb2e3ad0612678e, type: 3}
+    floors:
+    - {fileID: 8177204908022057725, guid: a7d86d37943954ea0bb394b91b083e64, type: 3}
+  sealedPoint: {fileID: 0}
+  revivalPoint: {fileID: 0}
