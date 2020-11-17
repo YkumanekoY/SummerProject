@@ -6,6 +6,10 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//次すること
+//名前のUI表示
+//何も入力しなかったときにGuest~~みたいな感じにする
+
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     //https://doc-api.photonengine.com/ja-jp/pun/v2/class_photon_1_1_pun_1_1_photon_network.html#a9eca32121ee792bbc3471d447d13e1d6
@@ -253,6 +257,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log(newPlayer.ActorNumber);
     }
 
+    //マッチシーンに遷移
     IEnumerator ChangeToMatch()
     {
         //3秒停止
@@ -278,9 +283,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         
         if (Status.OFFLINE.ToString().Equals(dispStatus))
         {
-            Debug.Log(PhotonNetwork.LocalPlayer.NickName);
+            //Debug.Log(PhotonNetwork.LocalPlayer.NickName);
             //Debug.Log(playerNickname.NickName);
-            //Debug.Log("オンライン");
+            
             roomCreatePanel.SetActive(true);
             ToOnline.SetActive(false);
             message.text = "ルームを作成or参加して\nゲームを開始";
