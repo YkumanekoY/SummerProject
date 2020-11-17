@@ -10,6 +10,9 @@ using UnityEngine.UI;
 //名前のUI表示
 //何も入力しなかったときにGuest~~みたいな感じにする
 
+//https://qiita.com/seka/items/29f02e7d171ed30f33f0
+//inputfieldについて
+
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     //https://doc-api.photonengine.com/ja-jp/pun/v2/class_photon_1_1_pun_1_1_photon_network.html#a9eca32121ee792bbc3471d447d13e1d6
@@ -23,6 +26,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public InputField nickname;
     public InputField roomName;
     public Text message;
+    public Text nicknameText;
     bool inRoom = false;
     
     string mode;                 // モード(ONLINE, OFFLINE)
@@ -107,6 +111,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomCreatePanel.SetActive(false);
         ToOnline.SetActive(true);
         message.text = "切断しました";
+        nicknameText.text = "";
     }
 
     // コールバック：Photonサーバ接続完了
@@ -285,7 +290,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             //Debug.Log(PhotonNetwork.LocalPlayer.NickName);
             //Debug.Log(playerNickname.NickName);
-            
+
+            nicknameText.text = nickname.text + "の空間";
             roomCreatePanel.SetActive(true);
             ToOnline.SetActive(false);
             message.text = "ルームを作成or参加して\nゲームを開始";

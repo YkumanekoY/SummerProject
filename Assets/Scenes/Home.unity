@@ -888,7 +888,7 @@ MonoBehaviour:
   m_LineType: 2
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 10
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1239,7 +1239,7 @@ GameObject:
   - component: {fileID: 1007553867}
   - component: {fileID: 1007553866}
   m_Layer: 5
-  m_Name: SceneNameText
+  m_Name: nicknameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,7 +1297,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Home
+  m_Text: 
 --- !u!222 &1007553867
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1830,6 +1830,7 @@ MonoBehaviour:
   nickname: {fileID: 2136866824}
   roomName: {fileID: 668658841}
   message: {fileID: 512200762}
+  nicknameText: {fileID: 1007553866}
 --- !u!114 &1818476065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2334,7 +2335,7 @@ MonoBehaviour:
   m_LineType: 2
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 10
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
