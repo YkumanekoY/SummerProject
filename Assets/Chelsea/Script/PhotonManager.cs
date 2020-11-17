@@ -8,20 +8,26 @@ using UnityEngine.UI;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
+    //https://doc-api.photonengine.com/ja-jp/pun/v2/class_photon_1_1_pun_1_1_photon_network.html#a9eca32121ee792bbc3471d447d13e1d6
+    //ここに書いてある変数はPhotonNetwork.~~の形で定義せずに使える
+    //例 PhotonNetwork.LocalPlayer.NickName
+
     //public GameObject score_object = null; // Textオブジェクト
     public GameObject roomCreatePanel;
     public GameObject ToOnline;
     public GameObject inRoomPanel;
+    public InputField nickname;
     public InputField roomName;
     public Text message;
     bool inRoom = false;
-
+    
     string mode;                 // モード(ONLINE, OFFLINE)
     string dispStatus;           // 画面項目：状態
     string dispMessage;          // 画面項目：メッセージ
     string dispRoomName;         // 画面項目：ルーム名
-    List<string> info = new List<string>();
+    List<string> info = new List<string>();//動的配列
     //string[] info = new string[100];
+    
 
     List<RoomInfo> roomDispList; // 画面項目：ルーム一覧
 
@@ -36,7 +42,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         // 部屋の最大人数
         MaxPlayers = 4,
-
+       
         // 公開
         IsVisible = true,
 
@@ -57,6 +63,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomCreatePanel.SetActive(false);
         inRoomPanel.SetActive(false);
         info.Clear();
+        
     }
 
 
@@ -206,7 +213,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //他プレイヤーが入ってきた時
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        dispMessage = "【" + newPlayer + "】" + "が入室しました。";
+        dispMessage = "【" + newPlayer.NickName + "】" + "が入室しました。";
         info.Add(dispMessage);
         message.text = "現在人数：" + "" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "";
         /*PlayerID[count] = PhotonNetwork.LocalPlayer.ActorNumber;
@@ -239,7 +246,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //他プレイヤーが退出した時
     public override void OnPlayerLeftRoom(Player newPlayer)
     {
-        dispMessage = "【" + newPlayer + "】" + "が退出しました。";
+        dispMessage = "【" + newPlayer.NickName + "】" + "が退出しました。";
         message.text = "現在人数：" + "" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "";
         info.Add(dispMessage);
 
@@ -266,11 +273,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //オンライン化する
     public void GameToMatch()
     {
+        PhotonNetwork.LocalPlayer.NickName =nickname.text;
         ConnectPhoton(false);
         
         if (Status.OFFLINE.ToString().Equals(dispStatus))
         {
-            Debug.Log("オンライン");
+            Debug.Log(PhotonNetwork.LocalPlayer.NickName);
+            //Debug.Log(playerNickname.NickName);
+            //Debug.Log("オンライン");
             roomCreatePanel.SetActive(true);
             ToOnline.SetActive(false);
             message.text = "ルームを作成or参加して\nゲームを開始";
@@ -280,6 +290,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //ルーム作成
     public void RoomCreate()
     {
+        //Debug.Log(roomName.text);
         CreateRoom(roomName.text);
         roomCreatePanel.SetActive(false);
         inRoomPanel.SetActive(true);
@@ -338,9 +349,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             int i = 0;
             while (i < info.Count)
             {
-                GUILayout.BeginVertical();
+                GUILayout.BeginVertical();//改行して表示
                 GUILayout.Label(info[i]);
-                GUILayout.EndVertical();
+                GUILayout.EndVertical();//改行して表示おわり
                 i++;
             }
             GUILayout.EndScrollView();
