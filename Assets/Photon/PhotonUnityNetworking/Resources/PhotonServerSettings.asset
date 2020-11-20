@@ -38,6 +38,9 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - Activate
+  - Deactivate
+  - OnTriggerEnter2D
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
