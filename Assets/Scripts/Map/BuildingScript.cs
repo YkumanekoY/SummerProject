@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class BuildingScript : MonoBehaviour
+public class BuildingScript : MonoBehaviourPunCallbacks
 {
 	StageManager.BuildingType buildingType;
+	private PhotonView bld_photonView = null;
 
 	[SerializeField]
 	private GameObject
@@ -27,12 +29,19 @@ public class BuildingScript : MonoBehaviour
 		insideObject.SetActive(false);
 	}
 
+    private void Awake()
+    {
+		bld_photonView = GetComponent<PhotonView>();
+    }
+
+    [PunRPC]
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.CompareTag("Enemy") || other.CompareTag("Child")) //自分だったら屋根を見えなくする
 		{
-			roof.SetActive(false);
-			insideObject.SetActive(true);
+			bld_photonView.RPC("Deacivate", RpcTarget.MasterClient);
+			//roof.SetActive(false);
+			//insideObject.SetActive(true);
 		}
 	}
 	void OnTriggerExit2D(Collider2D other)
@@ -40,8 +49,23 @@ public class BuildingScript : MonoBehaviour
 		Debug.Log("out");
 		if (other.CompareTag("Enemy") || other.CompareTag("Child")) //自分だったら屋根を戻す
 		{
-			roof.SetActive(true);
-			insideObject.SetActive(false);
+			bld_photonView.RPC("Acivate", RpcTarget.MasterClient);
+			//roof.SetActive(true);
+			//insideObject.SetActive(false);
 		}
+	}
+
+	[PunRPC]
+	private void Deactivate()
+    {
+		roof.SetActive(false);
+		insideObject.SetActive(true);
+	}
+
+	[PunRPC]
+	private void Activate()
+	{
+		roof.SetActive(true);
+		insideObject.SetActive(false);
 	}
 }
