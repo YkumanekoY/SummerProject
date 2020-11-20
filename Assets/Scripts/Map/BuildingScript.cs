@@ -39,7 +39,7 @@ public class BuildingScript : MonoBehaviourPunCallbacks
 	{
 		if (other.CompareTag("Enemy") || other.CompareTag("Child")) //自分だったら屋根を見えなくする
 		{
-			bld_photonView.RPC("Deacivate", RpcTarget.MasterClient);
+			bld_photonView.RPC("Deactivate", RpcTarget.MasterClient);
 			//roof.SetActive(false);
 			//insideObject.SetActive(true);
 		}
@@ -49,7 +49,7 @@ public class BuildingScript : MonoBehaviourPunCallbacks
 		Debug.Log("out");
 		if (other.CompareTag("Enemy") || other.CompareTag("Child")) //自分だったら屋根を戻す
 		{
-			bld_photonView.RPC("Acivate", RpcTarget.MasterClient);
+			bld_photonView.RPC("Activate", RpcTarget.MasterClient);
 			//roof.SetActive(true);
 			//insideObject.SetActive(false);
 		}
