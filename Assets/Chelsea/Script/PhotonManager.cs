@@ -6,15 +6,39 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//次すること
+//名前のUI表示
+//何も入力しなかったときにGuest~~みたいな感じにする
+
+//https://qiita.com/seka/items/29f02e7d171ed30f33f0
+//inputfieldについて
+
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
-    //public GameObject score_object = null; // Textオブジェクト
+    //https://doc-api.photonengine.com/ja-jp/pun/v2/class_photon_1_1_pun_1_1_photon_network.html#a9eca32121ee792bbc3471d447d13e1d6
+    //ここに書いてある変数はPhotonNetwork.~~の形で定義せずに使える
+    //例 PhotonNetwork.LocalPlayer.NickName
 
+    //public GameObject score_object = null; // Textオブジェクト
+    public GameObject roomCreatePanel;
+    public GameObject ToOnline;
+    public GameObject inRoomPanel;
+    public InputField nickname;
+    public InputField roomName;
+    public Text message;
+    public Text nicknameText;
+    bool inRoom = false;
+    
     string mode;                 // モード(ONLINE, OFFLINE)
     string dispStatus;           // 画面項目：状態
     string dispMessage;          // 画面項目：メッセージ
     string dispRoomName;         // 画面項目：ルーム名
+    List<string> info = new List<string>();//動的配列
+    //string[] info = new string[100];
+    
+
     List<RoomInfo> roomDispList; // 画面項目：ルーム一覧
+
     //private float step_time;
     //int ActorNumber;
 
@@ -26,14 +50,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         // 部屋の最大人数
         MaxPlayers = 4,
-
+       
         // 公開
         IsVisible = true,
 
         // 入室可
         IsOpen = true
-
-
     };
 
     // 状態
@@ -46,6 +68,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         initParam();
+        roomCreatePanel.SetActive(false);
+        inRoomPanel.SetActive(false);
+        info.Clear();
+        
     }
 
 
@@ -82,6 +108,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
         // 変数初期化
         initParam();
+        roomCreatePanel.SetActive(false);
+        ToOnline.SetActive(true);
+        message.text = "切断しました";
+        nicknameText.text = "";
     }
 
     // コールバック：Photonサーバ接続完了
@@ -143,14 +173,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void ConnectToRoom(string roomName)
     {
         PhotonNetwork.JoinRoom(roomName);
+        roomCreatePanel.SetActive(false);
+        inRoom = true;
     }
 
     // コールバック：ルーム作成完了
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         dispMessage = "ルームを作成しました。";
-
+        message.text = "現在人数：" + "" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "";
     }
 
     // コールバック：ルーム作成失敗
@@ -167,14 +200,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 表示ルームリストに追加する
         roomDispList.Add(PhotonNetwork.CurrentRoom);
         dispMessage = "【" + PhotonNetwork.CurrentRoom.Name + "】" + "に入室しました。";
+        info.Add(dispMessage);
+        inRoom = true;
+        inRoomPanel.SetActive(true);
+        message.text = "現在人数：" + "" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "";
 
         /*
         Vector2 v2 = new Vector2(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
         GameObject monster2 = PhotonNetwork.Instantiate("Player", v2, Quaternion.identity, 0);
         */
 
-        Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
-       
+        //Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
+
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
@@ -185,7 +222,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //他プレイヤーが入ってきた時
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-
+        dispMessage = "【" + newPlayer.NickName + "】" + "が入室しました。";
+        info.Add(dispMessage);
+        message.text = "現在人数：" + "" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "";
         /*PlayerID[count] = PhotonNetwork.LocalPlayer.ActorNumber;
         count++;*/
 
@@ -211,11 +250,19 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
         Debug.Log("OnPlayerEnteredRoom");
         Debug.Log(newPlayer.ActorNumber);
-
-
     }
 
+    //他プレイヤーが退出した時
+    public override void OnPlayerLeftRoom(Player newPlayer)
+    {
+        dispMessage = "【" + newPlayer.NickName + "】" + "が退出しました。";
+        message.text = "現在人数：" + "" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "";
+        info.Add(dispMessage);
 
+        Debug.Log(newPlayer.ActorNumber);
+    }
+
+    //マッチシーンに遷移
     IEnumerator ChangeToMatch()
     {
         //3秒停止
@@ -233,6 +280,51 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //score_text.text = PhotonNetwork.LocalPlayer.ActorNumber.ToString();
     }
 
+    //オンライン化する
+    public void GameToMatch()
+    {
+        PhotonNetwork.LocalPlayer.NickName =nickname.text;
+        ConnectPhoton(false);
+        
+        if (Status.OFFLINE.ToString().Equals(dispStatus))
+        {
+            //Debug.Log(PhotonNetwork.LocalPlayer.NickName);
+            //Debug.Log(playerNickname.NickName);
+
+            nicknameText.text = nickname.text + "の空間";
+            roomCreatePanel.SetActive(true);
+            ToOnline.SetActive(false);
+            message.text = "ルームを作成or参加して\nゲームを開始";
+        }
+    }
+
+    //ルーム作成
+    public void RoomCreate()
+    {
+        //Debug.Log(roomName.text);
+        CreateRoom(roomName.text);
+        roomCreatePanel.SetActive(false);
+        inRoomPanel.SetActive(true);
+        //Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        //message.text = "現在人数：" + "【" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "】";
+        //↑PhotonNetwork.CurrentRoom.PlayerCountはコールバック内でしか使えない
+        inRoom = true;
+    }
+
+    //ルーム退出時
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        inRoomPanel.SetActive(false);
+        roomCreatePanel.SetActive(true);
+        inRoom = false;
+        message.text = "ルームを作成or参加して\nゲームを開始";
+        info.Clear();
+
+    }
+
+   
+
     // ---------- 設定GUI ----------
     void OnGUI()
     {
@@ -242,68 +334,56 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             Quaternion.identity,
             new Vector3(scale, scale, 1.0f));
 
-        GUI.Window(0, new Rect(-200, -200, 400, 400),
-            NetworkSettingWindow, "Photon接続テスト");
+        if (!Status.OFFLINE.ToString().Equals(dispStatus))
+        {
+            GUI.Window(0, new Rect(-200, 0, 400, 200),//真ん中から横、縦、大きさ、大きさ
+                NetworkSettingWindow, "他のルームに参加する");
+        }
+        if(inRoom == true)
+        {
+            GUI.Window(0, new Rect(-200, -100, 400, 300),//真ん中から横、縦、大きさ、大きさ
+                            NetworkSettingWindow, "入室状況");
+        }
+        
     }
 
-    Vector2 scrollPosition;
+    Vector2 scrollPosition1;
+    Vector2 scrollPosition2;
 
     public object MaxPlayers { get; private set; }
 
     void NetworkSettingWindow(int windowID)
     {
-        // ステータス, メッセージの表示
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("状態: " + dispStatus, GUILayout.Width(100));
-        GUILayout.FlexibleSpace();
-        if (Status.ONLINE.ToString().Equals(dispStatus))
+        if (inRoom == true)
         {
-            // サーバ接続時のみ表示
-            if (GUILayout.Button("切断"))
-                DisConnectPhoton();
+            scrollPosition1 = GUILayout.BeginScrollView(scrollPosition1, GUILayout.Width(380), GUILayout.Height(300));
+            int i = 0;
+            while (i < info.Count)
+            {
+                GUILayout.BeginVertical();//改行して表示
+                GUILayout.Label(info[i]);
+                GUILayout.EndVertical();//改行して表示おわり
+                i++;
+            }
+            GUILayout.EndScrollView();
         }
-        GUILayout.EndHorizontal();
-        GUILayout.Label(dispMessage);
-        GUILayout.Space(20);
+        
+        //if (creater == true)
+        //{
+        //    GUILayout.BeginHorizontal();
+        //    GUILayout.Label(dispMessage);
+        //    GUILayout.EndHorizontal();
+        //}
 
-        if (!Status.ONLINE.ToString().Equals(dispStatus))
-        {
-            // --- 初期表示時、OFFLINEモードのみ表示
-            // マスターサーバに接続する
-            GUILayout.Label("【モード選択】");
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("ONLINE Mode"))
-                ConnectPhoton(false);
-            if (GUILayout.Button("OFFLINE Mode"))
-                ConnectPhoton(true);
-            GUILayout.EndHorizontal();
-        }
-        else if (Status.ONLINE.ToString().Equals(dispStatus))
+        if (Status.ONLINE.ToString().Equals(dispStatus))
         {
             // --- ONLINEモードのみ表示
             if (!(PhotonNetwork.CurrentRoom != null))
             {
-                // ルーム作成
-                GUILayout.Label("【ルーム作成】");
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("　ルーム名: ");
-                dispRoomName = GUILayout.TextField(dispRoomName, GUILayout.Width(150));
-                GUILayout.FlexibleSpace();
-                GUILayout.EndHorizontal();
-                // 作成ボタン
-                GUILayout.BeginHorizontal();
-                if (GUILayout.Button("作成 & 入室"))
-                {
-                    CreateRoom(dispRoomName);
-                }
-                GUILayout.EndHorizontal();
-                GUILayout.Space(20);
-
                 // ルーム一覧
                 GUILayout.Label("【ルーム一覧 (クリックで入室)】");
                 // 一覧表示
-                scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(380), GUILayout.Height(100));
+                scrollPosition2 = GUILayout.BeginScrollView(scrollPosition2, GUILayout.Width(380), GUILayout.Height(100));
                 if (roomDispList != null && roomDispList.Count > 0)
                 {
                     // 更新ボタン

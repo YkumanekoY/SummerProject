@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class OniOrNingen : MonoBehaviourPunCallbacks
 {
-    int oniNumber=1;
+    int oniNumber;
     public Text Onitext;
     Vector2 v = new Vector2(-2f + PhotonNetwork.LocalPlayer.ActorNumber,0);
 
@@ -15,6 +15,8 @@ public class OniOrNingen : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        oniNumber = Random.Range(1,5);
+        Debug.Log(oniNumber);
         //PhotonNetwork.IsMessageQueueRunning = true;
         // シーンの読み込みコールバックを登録.
         SceneManager.sceneLoaded += OnLoadedScene;
