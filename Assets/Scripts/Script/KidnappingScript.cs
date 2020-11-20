@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class KidnappingScript : MonoBehaviour
+public class KidnappingScript : MonoBehaviourPunCallbacks
 {
     GameObject[] playersObject;
     GameObject jail;
@@ -29,26 +30,28 @@ public class KidnappingScript : MonoBehaviour
         jail = GameObject.FindGameObjectWithTag("RevivalCharmPoint");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        
-       
     }
 
     private void Start()
     {
-		playersObject = gameManager.childrenObjects;
-		isInterruptedArray = new bool[playersObject.Length];
-        stoppingGhostScript = GetComponent<StoppingGhostScript>();
-
-        for (int i = 0; i < playersObject.Length; i++)
+        if (photonView.IsMine)
         {
-            torchScript = playersObject[i].transform.Find("TorchManager").gameObject.GetComponent<TorchScript>();
-            torchScript.childGameObjectNumber = i;
+            playersObject = gameManager.childrenObjects;
+            isInterruptedArray = new bool[playersObject.Length];
+            stoppingGhostScript = GetComponent<StoppingGhostScript>();
+
+            for (int i = 0; i < playersObject.Length; i++)
+            {
+                torchScript = playersObject[i].transform.Find("TorchManager").gameObject.GetComponent<TorchScript>();
+                torchScript.childGameObjectNumber = i;
+            }
+
+            for (int i = 0; i < playersObject.Length; i++)
+            {
+                isInterruptedArray[i] = false;
+            }
         }
 
-        for (int i = 0; i < playersObject.Length; i++)
-        {
-            isInterruptedArray[i] = false;
-        }
     }
 
     // Update is called once per frame
