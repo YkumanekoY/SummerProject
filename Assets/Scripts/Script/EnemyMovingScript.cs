@@ -23,6 +23,7 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
     float currentSpeed;
     public const float childSpeed = 5.0f;// 子供のスピード
     public const float ghostSpeed = 6f;
+    Animator animator;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
             itemListObj.gameObject.SetActive(true);
             enemyCamera.gameObject.SetActive(true);
         }
+        this.animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -51,6 +53,8 @@ public class EnemyMovingScript : MonoBehaviourPunCallbacks
                 inputX = Input.GetAxis("Horizontal"); //x方向のInputの値を取得
                 inputY = Input.GetAxis("Vertical"); //z方向のInputの値を取得
                 rigidBody.velocity = new Vector2(inputX * currentSpeed, inputY * currentSpeed); //プレイヤーのRigidbodyに対してInputにspeedを掛けた値で更新し移動
+                this.animator.SetFloat("x", inputX);
+                this.animator.SetFloat("y", inputY);
             }
         }
        
