@@ -72,19 +72,7 @@ namespace Photon.Pun
                 return this.pvCache;
             }
         }
-
-        //#if UNITY_EDITOR
-        //protected virtual void Reset()
-        //{
-        //    this.pvCache = this.transform.GetParentComponent<PhotonView>();
-
-        //    if (this.pvCache == null)
-        //    {
-        //        Debug.LogWarning(this.GetType().Name + " requires a PhotonView. No PhotonView was found, so one is being added to GameObject '" + this.transform.root.name + "'");
-        //        this.pvCache = this.transform.root.gameObject.AddComponent<PhotonView>();
-        //    }
-        //}
-        //#endif
+    
     }
 
 

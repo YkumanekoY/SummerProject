@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -7,11 +8,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //次すること
-//名前のUI表示
-//何も入力しなかったときにGuest~~みたいな感じにする
-
 //https://qiita.com/seka/items/29f02e7d171ed30f33f0
 //inputfieldについて
+
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -29,6 +28,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public Text nicknameText;
     bool inRoom = false;
     
+
+
     string mode;                 // モード(ONLINE, OFFLINE)
     string dispStatus;           // 画面項目：状態
     string dispMessage;          // 画面項目：メッセージ
@@ -44,6 +45,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     int[] PlayerID = new int[4];
     int count = 1;
+
+    public static bool IsNullOrWhiteSpace(string value)
+    {
+        return value == null || value.Trim() == "";
+    }
 
     // ルームオプションの基本設定
     RoomOptions roomOptions = new RoomOptions
@@ -283,7 +289,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //オンライン化する
     public void GameToMatch()
     {
-        PhotonNetwork.LocalPlayer.NickName =nickname.text;
+        if (string.IsNullOrWhiteSpace(nickname.text))
+        {
+            Debug.Log("aaaa");
+            PhotonNetwork.LocalPlayer.NickName = "Guest" + UnityEngine.Random.Range(1, 100).ToString();
+        }
+        else
+        {
+            PhotonNetwork.LocalPlayer.NickName = nickname.text;
+        }
+        
         ConnectPhoton(false);
         
         if (Status.OFFLINE.ToString().Equals(dispStatus))
@@ -291,7 +306,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             //Debug.Log(PhotonNetwork.LocalPlayer.NickName);
             //Debug.Log(playerNickname.NickName);
 
-            nicknameText.text = nickname.text + "の空間";
+            nicknameText.text = PhotonNetwork.LocalPlayer.NickName + "の空間";
             roomCreatePanel.SetActive(true);
             ToOnline.SetActive(false);
             message.text = "ルームを作成or参加して\nゲームを開始";
